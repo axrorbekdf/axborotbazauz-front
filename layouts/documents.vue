@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { UiLoader } from '#components';
-import { ACCOUNT } from '~/libs/appwrite';
+// import { ACCOUNT } from '~/libs/appwrite';
 const authStore = useAuthStore();
 
 const router = useRouter();
@@ -10,20 +10,20 @@ const loadingStore = useLoadingStore();
     onBeforeMount(() => {
         console.log(loadingStore);
         
-        ACCOUNT.get()
-        .then((response) => {
-            loadingStore.set(false)
+        // ACCOUNT.get()
+        // .then((response) => {
+        //     loadingStore.set(false)
 
-            authStore.set({
-                id: response.$id,
-                name: response.name,
-                email: response.email,
-                status: response.status,
-            });
-        })
-        .catch(() => {
-            router.push('/auth/login')
-        })
+        //     authStore.set({
+        //         id: response.$id,
+        //         name: response.name,
+        //         email: response.email,
+        //         status: response.status,
+        //     });
+        // })
+        // .catch(() => {
+        //     router.push('/auth/login')
+        // })
     });
 </script>
 
