@@ -4,7 +4,7 @@ export const filePath = 'https://apionatilim.vatandoshlarfondi.uz';
 
 
 export const apiPoint = 'https://taxi111.osongina.uz/api/';
-export const localApiPoint = 'http://10.100.104.125:5500/api/';
+export const localApiPoint = 'http://10.100.104.125:8888/api/';
 
 
 export const sidebarItems = [

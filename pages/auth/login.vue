@@ -6,7 +6,7 @@ import AuthService from '~/services/Auth';
     })
 
     useHead({
-        title: "Kirish | UZMAN.UZ"
+        title: "Kirish | Axborot-Baza.UZ"
     })
 
     const router = useRouter();
@@ -37,7 +37,7 @@ import AuthService from '~/services/Auth';
                 </h1>
 
                 <h1 class="opacity-70 text-2xl mt-0">
-                    <p>uzman.uz sayti boshqaruv paneliga kirish.</p>
+                    <p>Axborot-Baza boshqaruv paneliga kirish.</p>
                 </h1>
 
                 <div>

@@ -11,13 +11,13 @@ const isLoading = ref(false);
 const errors = ref('');
 
 const state = reactive({
-  email: undefined,
+  phone: undefined,
   password: undefined
 })
 
 const validate = (state: any): FormError[] => {
   const errors = []
-  if (!state.email) errors.push({ path: 'email', message: "Email to'ldirilishi shart!" })
+  if (!state.phone) errors.push({ path: 'phone', message: "Telefon to'ldirilishi shart!" })
   if (!state.password) errors.push({ path: 'password', message: "Parol to'ldirilishi shart!" })
   return errors
 }
@@ -25,11 +25,11 @@ const validate = (state: any): FormError[] => {
 async function onSubmit (event: FormSubmitEvent<any>) {
   
   isLoading.value = true;
-  const {email, password} = event.data;
+  const {phone, password} = event.data;
 
   
     AuthService.login({
-      email: email,
+      phone: phone,
       password: password
     })
     .then((res: any) => {
@@ -49,8 +49,8 @@ async function onSubmit (event: FormSubmitEvent<any>) {
 
         authStore.set({
             id: "",
-            username: res.resoult.username,
-            email: res.resoult.email,
+            name: res.resoult.name,
+            phone: res.resoult.phone,
             password: "",
             token: res.resoult.token,
         });
@@ -84,8 +84,8 @@ async function onSubmit (event: FormSubmitEvent<any>) {
   />
 
   <UForm :validate="validate" :state="state" class="space-y-6" @submit="onSubmit">
-    <UFormGroup label="Email" name="email">
-      <UInput v-model="state.email" color="blue" size="lg"/>
+    <UFormGroup label="Telefon" name="phone">
+      <UInput v-model="state.phone" color="blue" size="lg"/>
     </UFormGroup>
 
     <UFormGroup label="Parol" name="password">

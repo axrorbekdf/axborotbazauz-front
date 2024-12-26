@@ -4,7 +4,7 @@ import { useApiFetch } from "./FetchService";
   const AuthService = {
 
     login(user: object){
-        return useApiFetch()("auth/login", {
+        return useApiFetch()("v2/auth/login", {
             method: "POST",
             body: user
         })

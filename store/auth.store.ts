@@ -4,8 +4,8 @@ import AuthService from "~/services/Auth";
 
 interface User {
     id: String,
-    username: String,
-    email: String,
+    name: String,
+    phone: String,
     password: String,
     token: String,
 }
@@ -13,8 +13,8 @@ interface User {
 const initialState: {user: User} = {
     user: {
         id: "",
-        username: "",
-        email: "",
+        name: "",
+        phone: "",
         password: "",
         token: "",
     }
