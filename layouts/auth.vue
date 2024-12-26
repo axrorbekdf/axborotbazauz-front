@@ -1,30 +1,45 @@
 <script setup lang="ts">
+import AuthService from '~/services/Auth';
+
+const router = useRouter();
+const authStore = useAuthStore();
+const loadingStore = useLoadingStore()
+
+onMounted(() => {
+    loadingStore.set(true);
     
-    // import { ACCOUNT } from '~/libs/appwrite';
-    import { useLoadingStore } from '~/store/loading.store';
+    AuthService.getUser()
+    .then((res: any) => {
+        
+        if(res.status){
+            authStore.update({
+                id: res.resoult.$id,
+                username: res.resoult.username,
+                email: res.resoult.email,
+                password: "",
+                token: res.resoult.token,
+            });
 
-    const loadingStore = useLoadingStore();
-    const router = useRouter();
-
-    onMounted(() => {
-        // ACCOUNT.get()
-        // .then(() => {
-        //     router.push('/')
-        // })
-        // .catch((error) => {
-        //     loadingStore.set(false)
-        // });
-    });
+            loadingStore.set(false);
+            router.push('/');
+        }
+        
+    }).catch(() => {
+        loadingStore.set(false);
+    }).finally(() => {
+        loadingStore.set(false);
+    });;
+});
 </script>
 
-
 <template>
-
     <UiLoader v-if="loadingStore.isLoading" />
+
     <template v-else>
-        <LayoutsMainNavbar />
-        <section class="min-h-screen bg-white dark:bg-black">
+        <div class="min-h-screen bg-white dark:bg-black">
             <slot />
-        </section>        
+        </div>
     </template>
+
 </template>
+  

@@ -1,32 +1,54 @@
 <script setup lang="ts">
-// import { ACCOUNT } from '~/libs/appwrite';
-import { useLoadingStore } from '~/store/loading.store';
+import AuthService from '~/services/Auth';
 
 
+const router = useRouter();
 const authStore = useAuthStore();
-const loadingStore = useLoadingStore();
+const loadingStore = useLoadingStore()
 
 onMounted(() => {
-    // ACCOUNT.get()
-    // .then(response => {
-    //     authStore.set({
-    //         id: response.$id,
-    //         name: response.name,
-    //         email: response.email,
-    //         status: response.status,
-    //     });
-    // }).finally(() => {
-    //     loadingStore.set(false)
-    // });
+    loadingStore.set(true);
 
+    AuthService.getUser()
+    .then((res: any): any => {
+        if (res.status) {
+            
+            authStore.update({
+                id: res.resoult.$id,
+                username: res.resoult.username,
+                email: res.resoult.email,
+                password: "",
+                token: res.resoult.token,
+            });
+            
+            
+        }else{
+            router.push('/auth/login');
+        }
+
+        loadingStore.set(false);
+    })
+    .catch((err: any): any => {
+
+        router.push('/auth/login');
+        loadingStore.set(false);
+
+    }).finally(() => {
+        loadingStore.set(false);
+    });
 });
 </script>
 <template>
     <UiLoader v-if="loadingStore.isLoading" />
     <template v-else>
         <LayoutsMainNavbar />
-        <section class="min-h-screen bg-white dark:bg-black">
-            <slot />
+        <LayoutsSidebar />
+        <section class="min-h-screen bg-white dark:bg-black pl-72 pt-[10vh]">
+            <div class="p-4">
+                <slot />
+            </div>
         </section>
     </template>
+    
 </template>
+  

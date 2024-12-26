@@ -1,11 +1,12 @@
-<script>
-
-</script>
-
 <template>
-  <NuxtLayout>
-    <NuxtPage />
+  <div>
+    <!-- <NuxtRouteAnnouncer /> -->
+    <!-- <NuxtWelcome /> -->
+
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
 
     <UNotifications />
-  </NuxtLayout>
+  </div>
 </template>

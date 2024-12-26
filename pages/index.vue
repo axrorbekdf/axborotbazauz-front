@@ -1,147 +1,73 @@
-<script lang="ts" setup>
-import { NuxtLink, type NuxtImg, type UButton, UTabs, Icon } from '#components';
-import { tabs, templates } from "@/constants";
+<script setup lang="ts">
 
-useHead({
-    title: "Jira software"
-})
-const { currentUser } = useAuthStore();
 
 </script>
 
 <template>
-    <main class="pb-70">
-        <!-- HERO SECTION -->
-        <section class="flex items-center justify-between h-[100vh] pt-[10vh] gap-4 bg-gradient-to-t from-white dark:from-black to-blue-500 dark:to-blue-800">
-    
-            <div class="pl-20 flex flex-col space-y-3">
-                <h1 class="text-5xl">
-                    Move fast, stay aligned, and buil better - together
-                </h1>
-                <p class="text-lg opacity-80">
-                    The #1 software development tool used by agile teams
-                </p>
+    <div>
+
+      <div class="flex flex-row">
+        <div class="basis-1/3 m-2">
+          <UCard>
+            <template #header>
+              Mutaxasislar
+            </template>
+
+            <div>
+                <div class="text-gray-600 text-sm">Umumiy soni</div>
+                <div class="text-gray-900 text-4xl font-semibold">
+                    <span class="text-green-500 text-xl font-medium flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+                        </svg>
+                        324
+                    </span>
+                </div>
+            </div>
             
+          </UCard>
+        </div>
+        <div class="basis-1/3 m-2">
+          <UCard>
+            <template #header>
+                Kommentlar
+            </template>
 
-                <template v-if="currentUser.status">
-                    <NuxtLink to="/documents">
-                        <UButton color="blue">Documents</UButton>
-                    </NuxtLink>
-                </template>
-
-                <template v-else>
-                    <NuxtLink to="/auth/login"> 
-                        <UButton color="blue">
-                            Try it free
-                        </UButton>
-                    </NuxtLink>
-                </template>
-
-            </div>
-    
-            <NuxtImg src="/hero.webp" class="w-1/2"/>
-        </section>
-    
-    
-        <!-- TAB SECTION -->
-        <section>
-            <h1 class="text-4xl font-medium px-4">
-                Move fast, stay aligned, and buil better - together
-            </h1>
-    
-            <UTabs :items="tabs" class="mt-6 px-4" :ui="{list: {width: 'w-fit'}}"> 
-                <template #item="{item}">
-                    <div class="flex justify-between items-center gap-6 mt-8">
-                        <div class="w-[40%]">
-                            <h1 class="text-4xl font-bold">
-                                {{ item.label }}
-                            </h1>
-                            <p class="mt-6 text-xl">
-                                {{ item.description }}
-                            </p>
-
-                            <div class="py-4 mt-12 rounded-r-full flex flex-col space-y-2 bg-gradient-to-r from-white dark:from-black to-blue-500 dark:to-blue-800">
-                                <Icon name="bxs:quote-alt-left" class="text-4xl"/>
-                                <p class="text-lg pl-2">{{ item.credentials.text }}</p>
-                                <div class="pl-2 opacity-70">
-                                    <p class="font-bold">{{ item.credentials.username }}</p>
-                                    <p class="text-sm">{{ item.credentials.company }}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <NuxtImg :src="item.image" class="w-[60%]"/>
-                    </div>
-                </template>
-            </UTabs>
-        </section>
-
-
-        <!--  -->
-        <section>
-            <h1 class="text-4xl font-medium text-center mt-20">Easier than ever</h1>
-            <div class="flex items-center justify-between max-w-xl mx-auto mt-4">
-                <div class="w-16 h-16 bg-blue-500 dark:bg-blue-800 rounded-full flex items-center justify-center">
-                    <Icon name="material-symbols:file-copy"  class="text-white text-4xl"/>
-                </div>
-                
-                <div class="flex-1 h-2 bg-gradient-to-r from-blue-500 dark:from-blue-800 to-gray-500 dark:from-gray-800"></div>
-
-                <div class="w-16 h-16 bg-gray-500 dark:bg-gray-800 rounded-full flex items-center justify-center">
-                    <Icon name="material-symbols-light:linked-services"  class="text-white text-4xl"/>
+            <div>
+                <div class="text-gray-600 text-sm">Umumiy soni</div>
+                <div class="text-gray-900 text-4xl font-semibold">
+                    <span class="text-green-500 text-xl font-medium flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+                        </svg>
+                        451
+                    </span>
                 </div>
             </div>
+          </UCard>
+        </div>
+        <div class="basis-1/3 m-2">
+          <UCard>
+            <template #header>
+              Feedbacklar
+            </template>
 
-            <div class="grid grid-cols-2 mt-20">
-                <div class="bg-blue-500 dark:bg-blue-800 p-8">
-                    <div class="flex flex-col space-y-2 items-center">
-                        <h1 class="text-2xl font-medium">
-                            Templates give you a head start
-                        </h1>
-                        <p class="text-xl">Get started with ready-made template.</p>
-                    </div>
-
-                    <div v-for="item in templates" :key="item">
-                        <div class="flex flex-col mt-4">
-                            <div class="bg-gray-500 dark:bg-gray-800 flex items-center gap-5 h-20">
-                                <div class="flex items-center justify-center bg-blue-500/30 dark:bg-blue-800/30 p-3 h-full">
-                                    <NuxtImg :src="item.image" class="w-12"/>
-                                </div>
-
-                                <div class="flex flex-col space-y-2">
-                                    <h2 class="font-medium text-xl">{{ item.name }}</h2>
-                                    <div class="group hover:underline" role="button">
-                                        <span>Learn more</span>
-                                        <Icon name="material-symbols:arrow-right-alt-rounded"  class="group-hover:translate-x-2 transition"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="py-4 mt-12 rounded-r-full flex flex-col space-y-2 bg-gradient-to-l from-gray-500 dark:from-gray-800 to-blue-500 dark:to-blue-800">
-                        <Icon name="bxs:quote-alt-left" class="text-4xl"/>
-                        <p class="text-lg pl-2">You can decide how you are working as a team first and then let the software work around you."</p>
-                        <div class="pl-2 opacity-70">
-                            <p class="font-bold">MARIA BONORCHIS</p>
-                            <p class="text-sm">AGILE DELIVERY MANAGER, CANCER RESEARCH UK</p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="bg-gray-500 dark:bg-gray-800 p-8">
-                    <div class="flex flex-col space-y-6 items-center">
-                        <div class="text-center">
-                            <h1 class="text-2xl font-medium">Then customize as you grow</h1>
-                            <p class="text-xl text-center">
-                                Jira adapts to the way you work, not the other way around. Start simple, customize as you go.
-                            </p>
-                        </div>
-
-                        <NuxtImg src="./product.webp" class="w-full"/>
-                    </div>
+            <div>
+                <div class="text-gray-600 text-sm">Umumiy soni</div>
+                <div class="text-gray-900 text-4xl font-semibold">
+                    <span class="text-green-500 text-xl font-medium flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+                        </svg>
+                        125
+                    </span>
                 </div>
             </div>
-        </section>
-    </main>
+          </UCard>
+        </div>
+      </div>
+        
+      
+    </div>
 </template>
+

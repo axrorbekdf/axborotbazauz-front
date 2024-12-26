@@ -1,58 +1,48 @@
 <script lang="ts" setup>
+import AuthService from '~/services/Auth';
 
     definePageMeta({
         layout: "auth"
-    });
+    })
 
     useHead({
-        title: "Auth | Jira software"
+        title: "Kirish | UZMAN.UZ"
     })
- 
-    const isLogin = ref(true);
 
-    const toggleLogin = () => (isLogin.value = !isLogin.value)
+    const router = useRouter();
 
-    
+    onMounted(() => {
+        AuthService.getUser()
+        .then((res: any) => {
+            
+            if(res.status){
+                router.push('/');
+            }
+            
+        });
+    });
+
 </script>
-
 <template>
-    
     <div class="flex items-center justify-center h-screen w -full relative">
         <NuxtImg src="/bg-auth.jpg" class="absolute inset-0 w-full h-full object-cover z-10" />
-        <div class="absolute inset-0 w-full h-full z-20 dark:bg-black/40 bg-white/40"></div>
+        <div class="absolute inset-0 w-full h-full z-20 dark:bg-black/60 bg-white/40"></div>
 
-        <UCard class="z-50 w-1/2 relative " :ui="{body: {base: 'flex gap-4'}}">
-            <div class="space-y-4 flex-1">
-                <h1 class="text-2xl font-bold">
-                    <template v-if="isLogin">Login</template>
-                    <template v-else>Register</template>
+        <UCard class="z-50 w-1/4 relative " :ui="{body: {base: 'flex gap-12'}}">
+            <div class="space-y-6 flex-1">
+                
+                <h1 class="text-5xl font-bold flex justify-between mt-6 mb-0">
+                    Kirish
+                    <SharedColorMode />
                 </h1>
 
-                <p class="opacity-70">
-                    <template v-if="isLogin">Please use the following credentials to login</template>
-                    <template v-else>Please use the following credentials to register</template>
-                </p>
+                <h1 class="opacity-70 text-2xl mt-0">
+                    <p>uzman.uz sayti boshqaruv paneliga kirish.</p>
+                </h1>
 
-                <div >
-                    <AuthLogin v-if="isLogin" :toggle-login="toggleLogin"/>
-                    <AuthRegister v-else :toggle-login="toggleLogin"/>
+                <div>
+                    <AuthLogin />
                 </div>
-            </div>
-
-            <UDivider label="OR" color="gray" orientation="vertical" class="w-fit"/>
-
-            <div class="space-y-4 flex-1 flex flex-col justify-center">
-
-                <UButton color="black" block size="lg">
-                    <Icon name="grommet-icons:github" class="w-5 h-5"/>
-                    <span>Login with Github</span>
-                </UButton>
-
-                <UButton color="black" block size="lg">
-                    <Icon name="grommet-icons:google" class="w-5 h-5"/>
-                    <span>Login with Google</span>
-                </UButton>
-
             </div>
         </UCard>
     </div>

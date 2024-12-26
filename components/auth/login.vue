@@ -1,17 +1,11 @@
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from '#ui/types'
-import { ACCOUNT } from '~/libs/appwrite';
+import AuthService from '~/services/Auth';
 
-
-defineProps({
-    toggleLogin: {
-        type: Function,
-        required: true
-    },
-});
 const toast = useToast();
-const authStore = useAuthStore();
+
 const router = useRouter();
+const authStore = useAuthStore();
 
 const isLoading = ref(false);
 const errors = ref('');
@@ -23,41 +17,56 @@ const state = reactive({
 
 const validate = (state: any): FormError[] => {
   const errors = []
-  if (!state.email) errors.push({ path: 'email', message: 'Email is required' })
-  if (!state.password) errors.push({ path: 'password', message: 'Password is required' })
+  if (!state.email) errors.push({ path: 'email', message: "Email to'ldirilishi shart!" })
+  if (!state.password) errors.push({ path: 'password', message: "Parol to'ldirilishi shart!" })
   return errors
 }
 
 async function onSubmit (event: FormSubmitEvent<any>) {
-  // Do something with data
-  // console.log(event.data)
+  
   isLoading.value = true;
   const {email, password} = event.data;
 
-  try{
-    await ACCOUNT.createEmailSession(email, password);
-    const response = await ACCOUNT.get();
-
-    authStore.set({
-      id: response.$id,
-      name: response.name,
-      email: response.email,
-      status: response.status,
-    });
-
-    toast.add({
-      title: 'Logged in',
-      description: "You are now logged in"
+  
+    AuthService.login({
+      email: email,
+      password: password
     })
+    .then((res: any) => {
 
-    router.push('/');
+      // console.log("Success:", res);
 
-    isLoading.value = false;
-  } catch(e: any){
-    errors.value = e.message;
-    isLoading.value = false;
-  }
+      if(res.status){
+        
+        router.push('/');
 
+        isLoading.value = false;
+
+        toast.add({
+          title: 'Tasdiqlandi!',
+          description: "Siz kirish uchun ruxsat oldingiz!"
+        })
+
+        authStore.set({
+            id: "",
+            username: res.resoult.username,
+            email: res.resoult.email,
+            password: "",
+            token: res.resoult.token,
+        });
+
+      }else{
+          errors.value = res.error.message;
+          isLoading.value = false;
+      }      
+      
+    })
+    .catch(err => {
+
+          errors.value = err.error.message;
+          isLoading.value = false;
+  
+    });
 
 }
 </script>
@@ -71,30 +80,26 @@ async function onSubmit (event: FormSubmitEvent<any>) {
     v-if="errors"
     color="red"
     variant="outline"
+    class="mb-4"
   />
 
-  <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit">
+  <UForm :validate="validate" :state="state" class="space-y-6" @submit="onSubmit">
     <UFormGroup label="Email" name="email">
       <UInput v-model="state.email" color="blue" size="lg"/>
     </UFormGroup>
 
-    <UFormGroup label="Password" name="password">
+    <UFormGroup label="Parol" name="password">
       <UInput v-model="state.password" type="password" color="blue" size="lg"/>
     </UFormGroup>
-    
-    <div class="text-sm text-neutral-500">
-        Not registered yet?
-        <span class="text-blue-500 hover:underline" role="button" @click="$props.toggleLogin">Sign up</span>
-    </div>
+
 
     <UButton type="submit" color="blue" class="w-full" block size="lg" :disabled="isLoading">
       
       <template v-if="isLoading">
         <Icon name="svg-spinners:3-dots-fade" class="w-5 h-5"/>
       </template>
-      <template v-else>Next</template>
+      <template v-else>Kirish</template>
 
     </UButton>
   </UForm>
 </template>
-

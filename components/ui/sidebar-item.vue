@@ -6,7 +6,7 @@ const route = useRoute();
 </script>
 
 <template>
-    <NuxtLink :to="item.path" v-for="(item, index) in sidebarItems" :key="item">
+    <NuxtLink :to="item.path" v-for="(item, index) in sidebarItems" :key="item.name">
         <UButton 
             class="w-full text-left h-12 flex justify-start rounded-none"
             :variant="route.fullPath === item.path ? 'solid':'ghost'"
