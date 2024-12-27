@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import AuthService from '~/services/Auth';
 
+useHead({
+    title: "Admin boshqaruv paneli | Axborot-Baza.UZ"
+})
 
 const router = useRouter();
 const authStore = useAuthStore();
@@ -14,11 +17,11 @@ onMounted(() => {
         if (res.status) {
             
             authStore.update({
-                id: res.resoult.$id,
-                name: res.resoult.name,
-                phone: res.resoult.phone,
+                id: res.result.$id,
+                name: res.result.name,
+                phone: res.result.phone,
                 password: "",
-                token: res.resoult.token,
+                token: res.result.token,
             });
             
             

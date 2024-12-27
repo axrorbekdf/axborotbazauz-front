@@ -10,7 +10,7 @@ const errors = ref('');
 
 const items = [
   [{
-    label: currentUser.email,
+    label: currentUser.phone,
     slot: 'account',
     disabled: true
   }], [{
@@ -61,7 +61,7 @@ const logout = async () => {
             <nuxt-link to="/" class="flex items-center space-x-1">
                 <NuxtImg src="/logo.png" width="50" height="50" />
 
-                <span class="text-2xl font-medium">Uzman LLC</span>
+                <span class="text-2xl font-medium">Axborot Baza</span>
             </nuxt-link>
 
             <div class="flex items-center space-x-2">
@@ -71,7 +71,7 @@ const logout = async () => {
                     <UChip>
                         <UButton class="font-sans" color="white" variant="solid" >
                             <div class="mx-2">
-                                {{ currentUser.username}}
+                                {{ currentUser.name}}
                             </div>
                             <UDropdown :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }" :popper="{ placement: 'bottom-start' }">
                                 <UAvatar src="https://avatars.githubusercontent.com/u/739984?v=4" />
@@ -79,10 +79,10 @@ const logout = async () => {
                                 <template #account="{ item }">
                                     <div class="text-left">
                                         <p>
-                                            {{currentUser.username}}
+                                            {{currentUser.name}}
                                         </p>
                                         <p>
-                                            {{currentUser.email}}
+                                            {{currentUser.phone}}
                                         </p>
                                         <p class="truncate font-medium text-gray-900 dark:text-white">
                                             {{ item.label }}

@@ -1,107 +1,30 @@
 import { defineStore } from "pinia";
+import Category from '~/model/category';
 import CategoryService from "~/services/Category";
 
 
 export const useCategoryStore = defineStore("category", {
     state: () => ({
-        category: null,
-        categories: [],
-        model: {
-            modelForForm: {
-              entity: {
-                id: undefined,
-                name: undefined,
-                icon: undefined
-              },
-              viewEntity: {
-                id: {
-                  name: 'ID',
-                  type: 'number'
-                },
-                name: {
-                  name: 'Nomi',
-                  type: 'string'
-                },
-                icon: {
-                  name: 'Icon',
-                  type: 'file'
-                }
-              },
-              formTemplate: [
-                {
-                  label: "Category nomi",
-                  name: 'name',
-                  relation: null
-                },
-                {
-                  label: "Category icon",
-                  name: 'icon',
-                  relation: null
-                }
-              ],
-              rules: {
-                name: {
-                  rule: "required",
-                  message: "To'ldirilishi kerak"
-                },
-                icon: {
-                  rule: "required",
-                  message: "To'ldirilishi kerak"
-                }
-              }
-            },
-            columns: [
-                {
-                  key: 'id',
-                  label: 'ID',
-                  sortable: true
-                }, {
-                  key: 'name',
-                  label: 'Name',
-                  sortable: true
-                }, {
-                  key: 'icon',
-                  label: 'Icon',
-                  sortable: true
-                }, {
-                  key: 'date',
-                  label: 'Sana',
-                  sortable: true
-                },{
-                  key: 'actions'
-                }
-            ],
-        
-            // items: (row: any) => [
-            //     [
-            //       {
-            //         label: 'Edit',
-            //         icon: 'i-heroicons-pencil-square-20-solid',
-            //         click: () => {console.log('Edit', row.id)}
-            //       }, {
-            //         label: 'View',
-            //         icon: 'i-heroicons-arrow-right-circle-20-solid'
-            //       }, {
-            //         label: 'Delete',
-            //         icon: 'i-heroicons-trash-20-solid'
-            //       }
-            //     ]
-            //   ]
-        }
-
+        category: null as Category | null,
+        categories: [] as Category[],
     }),
     getters: {
         category: state => state.category,
-        getList: state => state.categories
+        getModels: state => state.categories
     },
     actions: {
-        async getAllList(){
+        async getAllModel(){
             try {
             
                 CategoryService.forOptions()
                 .then((res: any) => {
                     
-                    this.categories = (res.resoult.data)
+                    const data: Category[] = (res.result.data);
+                    const newData: Category[] = data.map((item) => {
+                      return Category.fromApiData(item);
+                    });
+
+                    this.categories = newData;
             
                 }).catch((error) => {
                     
@@ -114,13 +37,13 @@ export const useCategoryStore = defineStore("category", {
               }
         },
 
-        async createCategory(category: any){
+        async createModel(category: Category){
           try {
           
               CategoryService.store(category)
               .then((res: any) => {
 
-                this.getAllList();
+                this.getAllModel();
           
               }).catch((error) => {
                   
@@ -133,13 +56,13 @@ export const useCategoryStore = defineStore("category", {
             }
         },
 
-        async updateCategory(id:number, category: any){
+        async updateModel(id:number, category: Category){
           try {
           
               CategoryService.update(id, category)
               .then((res: any) => {
 
-                this.getAllList();
+                this.getAllModel();
           
               }).catch((error) => {
                   
@@ -152,13 +75,13 @@ export const useCategoryStore = defineStore("category", {
             }
         },
 
-        async deleteCategory(id:number){
+        async deleteModel(id:number){
           try {
           
               CategoryService.delete(id)
               .then((res: any) => {
 
-                this.getAllList();
+                this.getAllModel();
           
               }).catch((error) => {
                   

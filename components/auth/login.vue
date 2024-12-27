@@ -34,26 +34,27 @@ async function onSubmit (event: FormSubmitEvent<any>) {
     })
     .then((res: any) => {
 
-      // console.log("Success:", res);
+      console.log("Success:", res);
 
       if(res.status){
         
-        router.push('/');
-
+        
         isLoading.value = false;
-
+        
         toast.add({
           title: 'Tasdiqlandi!',
           description: "Siz kirish uchun ruxsat oldingiz!"
         })
-
+        
         authStore.set({
-            id: "",
-            name: res.resoult.name,
-            phone: res.resoult.phone,
-            password: "",
-            token: res.resoult.token,
+          id: res.result.id,
+          name: res.result.name,
+          phone: res.result.phone,
+          password: "",
+          token: res.result.token,
         });
+        
+        router.push('/');
 
       }else{
           errors.value = res.error.message;
@@ -61,7 +62,7 @@ async function onSubmit (event: FormSubmitEvent<any>) {
       }      
       
     })
-    .catch(err => {
+    .catch((err: any): any => {
 
           errors.value = err.error.message;
           isLoading.value = false;
