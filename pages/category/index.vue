@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 definePageMeta({
-    layout: "admin"
+    layout: "admin",
 });
 
 // const loadingStore = useLoadingStore();

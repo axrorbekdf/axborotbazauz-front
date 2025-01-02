@@ -9,7 +9,8 @@ const props = defineProps({
 });
 
 const columns = [{
-
+  key: 'select',
+  label: 'Select'
 },{
   key: 'id',
   label: 'ID'
@@ -86,19 +87,21 @@ const items = (row:any) => {
       click: () => console.log('Edit', row)
     }, {
       label: 'View',
-      icon: 'i-heroicons-document-duplicate-20-solid'
+      icon: 'i-heroicons-document-duplicate-20-solid',
+      click: () => console.log('Show', row)
     }], [{
       label: 'Delete',
-      icon: 'i-heroicons-trash-20-solid' 
+      icon: 'i-heroicons-trash-20-solid',
+      click: () => console.log('Delet', row)
     }]
   ];
 };
 
-function select(row:any) {
+const select = (row:any):any => {
 
   if (!row || !row.id) {
     console.error('Invalid row data', row);
-    return [];
+    return 0;
   }
 
   const index = selected.value.findIndex(item => item.id === row.id)
@@ -111,6 +114,12 @@ function select(row:any) {
 }
 
 const selected = ref([]);
+
+const show = (row:any) => {
+
+};
+
+
 </script>
 
 <template>
