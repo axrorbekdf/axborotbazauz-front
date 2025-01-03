@@ -9,14 +9,17 @@ export const useCategoryStore = defineStore("category", {
         categories: [] as Category[],
     }),
     getters: {
-        category: state => state.category,
+        oneModel: state => state.category,
         getModels: state => state.categories
     },
     actions: {
+        setOneModel(model: Category){
+          this.category = model;
+        },
+
         async getAllModel(){
             try {
-            
-                CategoryService.forOptions()
+                await CategoryService.forOptions()
                 .then((res: any) => {
                     
                     const data: Category[] = (res.result.data);
@@ -40,7 +43,7 @@ export const useCategoryStore = defineStore("category", {
         async createModel(category: Category){
           try {
           
-              CategoryService.store(category)
+              await CategoryService.store(category)
               .then((res: any) => {
 
                 this.getAllModel();
@@ -59,7 +62,7 @@ export const useCategoryStore = defineStore("category", {
         async updateModel(id:number, category: Category){
           try {
           
-              CategoryService.update(id, category)
+              await CategoryService.update(id, category)
               .then((res: any) => {
 
                 this.getAllModel();
@@ -78,7 +81,7 @@ export const useCategoryStore = defineStore("category", {
         async deleteModel(id:number){
           try {
           
-              CategoryService.delete(id)
+              await CategoryService.delete(id)
               .then((res: any) => {
 
                 this.getAllModel();

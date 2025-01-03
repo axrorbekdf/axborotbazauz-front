@@ -2,7 +2,7 @@ import AuthService from "~/services/Auth";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
   
-    AuthService.getUser()
+    await AuthService.getUser()
     .then((res: any): any => {
         if (!res.status) {
             // Agar foydalanuvchi avtorizatsiyadan o'tmagan bo'lsa, login sahifasiga yo'naltirish

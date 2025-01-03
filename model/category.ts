@@ -51,11 +51,6 @@ export default class Category {
       };
     }
 
-    getDateTest(){
-      console.log(this.name);
-      
-    }
-
     // Statik metod: API-dan kelgan obyektni Category sinfiga aylantirish
     static fromApiData(apiData: ICategory): Category {
       return new Category(
@@ -68,4 +63,65 @@ export default class Category {
         apiData.updated_at,
       );
     }
+}
+
+export class CrudCategory{
+
+  getFormFields(){
+    return {
+      id: {
+        type: Number
+      },
+      name: {
+        type: String
+      },
+      slug: {
+        type: String
+      },
+      count: {
+        type: String
+      },
+      responsible_worker: {
+        type: String
+      },
+      created_at: {
+        type: String
+      },
+      updated_at: {
+        type: String
+      },
+    };
   }
+
+  getColumns():any {
+    const columns = [{
+      key: 'select',
+      label: 'Select'
+    },{
+      key: 'id',
+      label: 'ID'
+    },{
+      key: 'name',
+      label: 'Ism'
+    }, {
+      key: 'slug',
+      label: 'slug'
+    }, {
+      key: 'count',
+      label: 'count'
+    }, {
+      key: 'responsible_worker',
+      label: 'responsible_worker'
+    }, {
+      key: 'created_at',
+      label: 'created_at'
+    },{
+      key: 'updated_at',
+      label: 'updated_at'
+    },{
+      key: 'actions'
+    }];
+
+    return columns;
+  }
+}
