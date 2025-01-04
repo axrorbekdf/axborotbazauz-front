@@ -8,7 +8,7 @@ definePageMeta({
 
 // const loadingStore = useLoadingStore();  
 const modelStore = useCategoryStore();      
-const modelCrud = new CrudCategory();
+const modelCrud = new CrudCategory(); 
 // onMounted(async () => {
 //   await modelStore.getAllModel();
 // });
@@ -22,7 +22,7 @@ const modelCrud = new CrudCategory();
   <!-- <template v-else>
       <div> -->
         <!-- <CrudDataTable :data="modelStore.getModels"/> -->
-        <CrudDataTable :model-store="modelStore" :model-crud="modelCrud"/>
+        <CrudDataTableModel :model-store="modelStore" :model-crud="modelCrud"/>
       <!-- </div>
   </template> -->
 </template>

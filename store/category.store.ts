@@ -1,33 +1,31 @@
 import { defineStore } from "pinia";
-import Category from '~/model/category';
+// import Category from '~/model/category';
 import CategoryService from "~/services/Category";
 
 
 export const useCategoryStore = defineStore("category", {
     state: () => ({
-        category: null as Category | null,
-        categories: [] as Category[],
+        category: null,
+        categories: [],
     }),
     getters: {
         oneModel: state => state.category,
         getModels: state => state.categories
     },
     actions: {
-        setOneModel(model: Category){
+        setOneModel(model:any){
           this.category = model;
         },
 
-        async getAllModel(){
+        async getAllModel(search: String|null, perPage: Number|null){
             try {
-                await CategoryService.forOptions()
+                await CategoryService.index({
+                  search: search,
+                  perPage: perPage
+                })
                 .then((res: any) => {
-                    
-                    const data: Category[] = (res.result.data);
-                    const newData: Category[] = data.map((item) => {
-                      return Category.fromApiData(item);
-                    });
 
-                    this.categories = newData;
+                    this.categories = res.result.data;
             
                 }).catch((error) => {
                     
@@ -40,13 +38,13 @@ export const useCategoryStore = defineStore("category", {
               }
         },
 
-        async createModel(category: Category){
+        async createModel(category: any){
           try {
           
               await CategoryService.store(category)
               .then((res: any) => {
 
-                this.getAllModel();
+                this.getAllModel(null, null);
           
               }).catch((error) => {
                   
@@ -59,13 +57,13 @@ export const useCategoryStore = defineStore("category", {
             }
         },
 
-        async updateModel(id:number, category: Category){
+        async updateModel(id:number, category: any){
           try {
           
               await CategoryService.update(id, category)
               .then((res: any) => {
 
-                this.getAllModel();
+                this.getAllModel(null, null);
           
               }).catch((error) => {
                   
@@ -84,7 +82,7 @@ export const useCategoryStore = defineStore("category", {
               await CategoryService.delete(id)
               .then((res: any) => {
 
-                this.getAllModel();
+                this.getAllModel(null, null);
           
               }).catch((error) => {
                   

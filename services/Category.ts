@@ -10,9 +10,10 @@ import { useApiFetch } from "./FetchService";
         })
     },
 
-    forOptions(){
+    forOptions(params: Object){
         return useApiFetch()(`category/for/options`, {
-            method: "GET"
+            method: "GET",
+            params: (params)
         })
     },
 
