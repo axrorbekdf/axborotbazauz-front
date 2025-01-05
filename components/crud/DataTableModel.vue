@@ -43,13 +43,13 @@ const actions = (row:any) => {
     }], [{
       label: 'Delete',
       icon: 'i-heroicons-trash-20-solid',
-      click: () => console.log('Delet', row)
+      click: () => modalDelete(row)
     }]
   ];
 };
 
 // Belgilanganlar qatori
-const selected = ref([]);
+const selected = ref<any>([]);
 // Qidirilayotgan matn yoki text
 const search = ref('')
 
@@ -61,10 +61,9 @@ const select = (row:any):any => {
     return 0;
   }
 
-  const index = selected.value.findIndex(item => item.id === row.id)
+  const index = selected.value.findIndex((item:any) => item.id === row.id)
   if (index === -1) {
-    selected.value = [];
-    selected.value.push(row)
+    selected.value = [row];
   } else {
     selected.value.splice(index, 1)
   }
@@ -73,20 +72,6 @@ const select = (row:any):any => {
 watchEffect(() => {
   model.modelStore.getAllModel(search.value);
 });
-
-// const filteredRows = computed(() => {
-  
-//   if (!search.value) {
-//       return model.modelStore.getModels
-//   }
-//   // model.modelStore.getAllModel(search.value);
-//   return model.modelStore.getModels.filter((item: any) => {
-//       return Object.values(item).some((value) => {
-//           return String(value).toLowerCase().includes(search.value.toLowerCase())
-//       })
-//   })
-
-// })
 
 const page = ref(1)
 const pageCount = 10
@@ -127,7 +112,7 @@ function modalUpdate(data: any){
 }
 
 function modalDelete(row: any){
-  model.modelStore.updateModel(row.id)
+  model.modelStore.deleteModel(row.id)
 }
 
 
@@ -160,7 +145,7 @@ function modalDelete(row: any){
 
         <UTable v-model="selected" :rows="paginateRows" :columns="model.modelCrud.getColumns()" @select="select">
           <template #name-data="{ row }">
-            <span :class="[selected.find(person => person.id === row.id) && 'text-primary-500 dark:text-primary-400']">{{ row.name }}</span>
+            <span :class="[selected.find((person:any) => person.id === row.id) && 'text-primary-500 dark:text-primary-400']">{{ row.name }}</span>
           </template>
 
           <template #actions-data="{ row }">

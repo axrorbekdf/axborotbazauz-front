@@ -1,13 +1,13 @@
 // // Category interfeysi
-interface ICategory {
-    id: Number,
-    name: String,
-    slug: String,
-    count: String,
-    responsible_worker: String,
-    created_at: String,
-    updated_at: String,
-}
+// interface ICategory {
+//     id: Number,
+//     name: String,
+//     slug: String,
+//     count: String,
+//     responsible_worker: String,
+//     created_at: String,
+//     updated_at: String,
+// }
   
 //   // Category sinfi
 // export default class Category {
