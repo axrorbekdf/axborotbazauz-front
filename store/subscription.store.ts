@@ -1,0 +1,97 @@
+import { defineStore } from "pinia";
+import SubscriptionService from "~/services/Subscription";
+
+
+export const useSubscriptionStore = defineStore("subscription", {
+    state: () => ({
+        model: {},
+        models: [],
+    }),
+    getters: {
+        oneModel: state => state.model,
+        getModels: state => state.models
+    },
+    actions: {
+        setOneModel(model:any){
+          this.model = model;
+        },
+
+        async getAllModel(search: String|null, perPage: Number|null){
+            try {
+                await SubscriptionService.index({
+                  search: search,
+                  perPage: perPage
+                })
+                .then((res: any) => {
+
+                    this.models = res.result.data;
+            
+                }).catch((error) => {
+                    
+                  console.error('Failed to load posts:', error);
+                });
+            
+              } catch (error) {
+                  console.error('Failed to load posts:', error);
+        
+              }
+        },
+
+        async createModel(model: any){
+          try {
+          
+              await SubscriptionService.store(model)
+              .then((res: any) => {
+
+                this.getAllModel(null, null);
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+        },
+
+        async updateModel(id:number, model: any){
+          try {
+          
+              await SubscriptionService.update(id, model)
+              .then((res: any) => {
+
+                this.getAllModel(null, null);
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+        },
+
+        async deleteModel(id:number){
+          try {
+          
+              await SubscriptionService.delete(id)
+              .then((res: any) => {
+
+                this.getAllModel(null, null);
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+        }
+    },
+});

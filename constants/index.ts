@@ -15,6 +15,11 @@ export const sidebarItems = [
         icon: "radix-icons:dashboard"
     },
     {
+        name: "Foydalanuvchilar",
+        path: "/user",
+        icon: "game-icons:progression"
+    },
+    {
         name: "Katgoriyalar",
         path: "/category",
         icon: "ri:todo-fill"
