@@ -15,15 +15,15 @@ export const sidebarItems = [
         icon: "radix-icons:dashboard"
     },
     {
-        name: "Category",
+        name: "Katgoriyalar",
         path: "/category",
         icon: "ri:todo-fill"
     },
-    // {
-    //     name: "Level",
-    //     path: "/level",
-    //     icon: "game-icons:progression"
-    // },
+    {
+        name: "Fanlar",
+        path: "/subject",
+        icon: "game-icons:progression"
+    },
     // {
     //     name: "Home card",
     //     path: "/home-card",

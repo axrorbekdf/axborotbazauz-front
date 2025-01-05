@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
-import CategoryService from "~/services/Category";
+import SubjectService from "~/services/Subject";
 
 
-export const useCategoryStore = defineStore("category", {
+export const useSubjectStore = defineStore("subject", {
     state: () => ({
         model: {},
         models: [],
@@ -18,7 +18,7 @@ export const useCategoryStore = defineStore("category", {
 
         async getAllModel(search: String|null, perPage: Number|null){
             try {
-                await CategoryService.index({
+                await SubjectService.index({
                   search: search,
                   perPage: perPage
                 })
@@ -40,7 +40,7 @@ export const useCategoryStore = defineStore("category", {
         async createModel(model: any){
           try {
           
-              await CategoryService.store(model)
+              await SubjectService.store(model)
               .then((res: any) => {
 
                 this.getAllModel(null, null);
@@ -59,7 +59,7 @@ export const useCategoryStore = defineStore("category", {
         async updateModel(id:number, model: any){
           try {
           
-              await CategoryService.update(id, model)
+              await SubjectService.update(id, model)
               .then((res: any) => {
 
                 this.getAllModel(null, null);
@@ -78,7 +78,7 @@ export const useCategoryStore = defineStore("category", {
         async deleteModel(id:number){
           try {
           
-              await CategoryService.delete(id)
+              await SubjectService.delete(id)
               .then((res: any) => {
 
                 this.getAllModel(null, null);

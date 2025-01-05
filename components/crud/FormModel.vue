@@ -23,6 +23,7 @@ const modelEntity = Object.keys(props.model).reduce((acc:any, key) => {
   acc[key] = props.model[key].value; // Kalitlar uchun boshlang'ich qiymat
   return acc;
 }, {});
+console.log(props.model);
 
 const state = reactive(modelEntity);
 
@@ -48,7 +49,6 @@ async function onSubmit(event: FormSubmitEvent<any>) {
     // if(!loadingStore.isLoading){
     //     props.toggleShow();
     // }
-    console.log(event.data)
 }
 </script>
 

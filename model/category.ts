@@ -78,7 +78,7 @@ export default class CrudCategory{
           message: "To'ldirilishi shart!"
         },
         hidden: true,
-        value: model['id'] ?? null
+        value: (JSON.stringify(model) !== "{}") ? model['id'] : null
       },
       name: {
         type: String,
@@ -88,7 +88,7 @@ export default class CrudCategory{
           message: "To'ldirilishi shart!"
         },
         hidden: false,
-        value: model['name'] ?? null
+        value: (JSON.stringify(model) !== "{}") ? model['name'] : null
       },
       // slug: {
       //   type: String,
@@ -108,7 +108,7 @@ export default class CrudCategory{
           message: "To'ldirilishi shart!"
         },
         hidden: false,
-        value: model['count'] ?? null
+        value: (JSON.stringify(model) !== "{}") ? model['count'] : null
       },
       // responsible_worker: {
       //   type: String,
