@@ -20,31 +20,34 @@ const props = defineProps({
 
 // Yangi obyektni yaratish
 const modelEntity = Object.keys(props.model).reduce((acc:any, key) => {
-  acc[key] = null; // Kalitlar uchun boshlang'ich qiymat
+  acc[key] = props.model[key].value; // Kalitlar uchun boshlang'ich qiymat
   return acc;
 }, {});
 
 const state = reactive(modelEntity);
 
+
 const validate = (state: any): FormError[] => {
   const errors:any = [];
 
-  Object.values(props.model).forEach((value: any, index) => {
-        const key = Object.keys(props.model)[index];
-      
-        if (!state[`${key}`]) errors.push({ path: `${key}`, message: value.rules.message })
-    });
+  Object.values(props.model).forEach((item: any, index) => {
+      const key = Object.keys(props.model)[index];
+    
+      if(item.rules.value){
+        if (!state[`${key}`]) errors.push({ path: `${key}`, message: item.rules.message })
+      }
+  });
     
   return errors;
 }
 
 async function onSubmit(event: FormSubmitEvent<any>) {
   // Do something with data
-    props.entityHandler()    
+    props.entityHandler(event.data)    
 
-    if(!loadingStore.isLoading){
-        props.toggleShow();
-    }
+    // if(!loadingStore.isLoading){
+    //     props.toggleShow();
+    // }
     console.log(event.data)
 }
 </script>
@@ -52,7 +55,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
 <template>
   <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit">
     
-    <UFormGroup v-for="(value, key) in props.model" :key="key" :label="value.name" :name="key">
+    <UFormGroup v-for="(value, key) in props.model" :key="key" :label="value.name" :name="key" v-show="!value.hidden">
       <UInput v-model="state[`${key}`]"/>
 
       <!-- <USelectMenu 

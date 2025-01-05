@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Category, { CrudCategory } from '~/model/category';
+import CrudCategory from '~/model/category';
 
 
 definePageMeta({
@@ -10,7 +10,7 @@ definePageMeta({
 const modelStore = useCategoryStore();      
 const modelCrud = new CrudCategory(); 
 // onMounted(async () => {
-//   await modelStore.getAllModel();
+//   await modelStore.getAllModel(); 
 // });
 
 </script>

@@ -1,13 +1,13 @@
 // // Category interfeysi
-// interface ICategory {
-//     id: Number,
-//     name: String,
-//     slug: String,
-//     count: String,
-//     responsible_worker: String,
-//     created_at: String,
-//     updated_at: String,
-// }
+interface ICategory {
+    id: Number,
+    name: String,
+    slug: String,
+    count: String,
+    responsible_worker: String,
+    created_at: String,
+    updated_at: String,
+}
   
 //   // Category sinfi
 // export default class Category {
@@ -65,18 +65,21 @@
 //     }
 // }
 
-export class CrudCategory{
+export default class CrudCategory{
 
-  getFormFields(){
+  getFormFields(model:any = {}){
+    
     return {
-      // id: {
-      //   type: Number,
-      //   name: "id",
-      //   rules: {
-      //     value: "required",
-      //     message: "To'ldirilishi shart!"
-      //   },
-      // },
+      id: {
+        type: Number,
+        name: "id",
+        rules: {
+          value: null,
+          message: "To'ldirilishi shart!"
+        },
+        hidden: true,
+        value: model['id'] ?? null
+      },
       name: {
         type: String,
         name: "Nomi",
@@ -84,6 +87,8 @@ export class CrudCategory{
           value: "required",
           message: "To'ldirilishi shart!"
         },
+        hidden: false,
+        value: model['name'] ?? null
       },
       // slug: {
       //   type: String,
@@ -92,14 +97,18 @@ export class CrudCategory{
       //     value: "required",
       //     message: "To'ldirilishi shart!"
       //   },
+      //   hidden: true,
+      //   value: null
       // },
       count: {
         type: String,
-        name: "count",
+        name: "Soni",
         rules: {
           value: "required",
           message: "To'ldirilishi shart!"
         },
+        hidden: false,
+        value: model['count'] ?? null
       },
       // responsible_worker: {
       //   type: String,
@@ -108,6 +117,8 @@ export class CrudCategory{
       //     value: "required",
       //     message: "To'ldirilishi shart!"
       //   },
+      //   hidden: true,
+      //   value: null
       // },
       // created_at: {
       //   type: String,
@@ -116,6 +127,8 @@ export class CrudCategory{
       //     value: "required",
       //     message: "To'ldirilishi shart!"
       //   },
+      //   hidden: true,
+      //   value: null
       // },
       // updated_at: {
       //   type: String,
@@ -124,6 +137,8 @@ export class CrudCategory{
       //     value: "required",
       //     message: "To'ldirilishi shart!"
       //   },
+      //   hidden: true,
+      //   value: null
       // },
     };
   }

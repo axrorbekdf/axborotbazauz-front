@@ -23,7 +23,6 @@ onMounted(async () => {
 });
 
 
-
 // Amallar ro'yhatida
 const actions = (row:any) => {
   if (!row || !row.id) {
@@ -35,7 +34,7 @@ const actions = (row:any) => {
     [{
       label: 'Edit',
       icon: 'i-heroicons-pencil-square-20-solid',
-      click: () => console.log('Edit', row)
+      click: () => modalShowUpdate(row)
     }, {
       label: 'View',
       icon: 'i-heroicons-document-duplicate-20-solid',
@@ -90,7 +89,7 @@ watchEffect(() => {
 // })
 
 const page = ref(1)
-const pageCount = 5
+const pageCount = 10
 
 const paginateRows = computed(() => {
   return model.modelStore.getModels.slice((page.value - 1) * pageCount, (page.value) * pageCount)
@@ -105,10 +104,30 @@ function modalShowView(row:any){
   model.modelStore.setOneModel(row);
 }
 
-function modalStore(){
+function modalShowStore(){
   isOpenStore.value = !isOpenStore.value;
   // model.modelStore.setOneModel(row);
-  
+}
+
+function modalShowUpdate(row:any){
+  isOpenUpdate.value = !isOpenUpdate.value;
+  model.modelStore.setOneModel(row);
+}
+
+function modalStore(data: Object){
+  isOpenStore.value = !isOpenStore.value;
+  // model.modelStore.setOneModel(row);
+  model.modelStore.createModel(data)
+}
+
+function modalUpdate(data: any){
+  isOpenUpdate.value = !isOpenUpdate.value;
+  // model.modelStore.setOneModel(row);
+  model.modelStore.updateModel(data.id, data)
+}
+
+function modalDelete(row: any){
+  model.modelStore.updateModel(row.id)
 }
 
 
@@ -121,7 +140,8 @@ function modalStore(){
   <template v-else>
       <div>
         <CrudViewModel :is-open="isOpenView" :toggle-show="modalShowView" :model="model.modelStore.oneModel"/>
-        <CrudStoreModel :is-open="isOpenStore" :toggle-show="modalStore" :model="model.modelCrud.getFormFields()"/>
+        <CrudStoreModel :is-open="isOpenStore" :toggle-show="modalShowStore" :model="model.modelCrud.getFormFields()" :create-model="modalStore"/>
+        <CrudUpdateModel :is-open="isOpenUpdate" :toggle-show="modalShowUpdate" :model="model.modelCrud.getFormFields(model.modelStore.oneModel)" :update-model="modalUpdate"/>
 
 
         <div class="flex px-3 py-3.5 border-b border-gray-200 dark:border-gray-700 items-center justify-between">
@@ -132,7 +152,7 @@ function modalStore(){
 
           <!-- Qator oxiridagi UButton -->
           <div class="flex items-center">
-            <UButton label="Create" color="primary" variant="soft" class="mx-5" @click="modalStore()" />
+            <UButton label="Create" color="primary" variant="soft" class="mx-5" @click="modalShowStore()" />
           </div>
         </div>
 
