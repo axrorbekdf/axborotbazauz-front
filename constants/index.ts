@@ -29,27 +29,27 @@ export const sidebarItems = [
         path: "/subject",
         icon: "game-icons:progression"
     },
-    // {
-    //     name: "Home card",
-    //     path: "/home-card",
-    //     icon: "eos-icons:product-subscriptions"
+    {
+        name: "Materiallar",
+        path: "/file",
+        icon: "eos-icons:product-subscriptions"
         
-    // },
-    // {
-    //     name: "Specialist",
-    //     path: "/specialist",
-    //     icon: "ic:baseline-cloud-done"
-    // },
-    // {
-    //     name: "Feedback",
-    //     path: "/feedback",
-    //     icon: "ic:baseline-cloud-done"
-    // },
-    // {
-    //     name: "Step work",
-    //     path: "/step-work",
-    //     icon: "ic:baseline-cloud-done"
-    // },
+    },
+    {
+        name: "To'lov tizimlari",
+        path: "/payment",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Obunalar",
+        path: "/subscription",
+        icon: "ic:baseline-cloud-done"
+    },
+    {
+        name: "Obunalar tarixi",
+        path: "/history/subscription",
+        icon: "ic:baseline-cloud-done"
+    },
     // {
     //     name: "Region",
     //     path: "/region",
