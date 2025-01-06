@@ -2,7 +2,7 @@
 const route = useRoute()
 
 // When accessing /posts/1, route.params.id will be 1
-const categorySlug = route.params.category_slug;
+const categorySlug = route.params.category_slug as string;
 </script>
 <template>
     <!-- <div>
@@ -17,7 +17,7 @@ const categorySlug = route.params.category_slug;
     <HomeSearch />
 
     <!-- Subject Grid Section -->
-    <HomeSubjects :category-slug="categorySlug"/>
+    <HomeSubjects :route="'/document/category/'" :category-slug="categorySlug"/>
 
     <!-- Recent Items Section -->
     <HomeRecentItems />

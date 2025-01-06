@@ -3,11 +3,12 @@ import CrudCategory from '~/model/category';
 
 
 definePageMeta({
-    layout: "admin",
-});
+    layout: 'admin',
+    title: 'Kategoriyalar bo\'limi'
+})
 
 // const loadingStore = useLoadingStore();  
-const modelStore = useCategoryStore();      
+const modelStore = useCategoryStore();       
 const modelCrud = new CrudCategory(); 
 // onMounted(async () => {
 //   await modelStore.getAllModel(); 

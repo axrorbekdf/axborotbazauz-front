@@ -11,43 +11,43 @@ export const localApiPoint = 'http://127.0.0.1:8000/api/';
 export const sidebarItems = [
     {
         name: "Dashboard",
-        path: "/dashboard",
+        path: "/admin/dashboard",
         icon: "radix-icons:dashboard"
     },
     {
         name: "Foydalanuvchilar",
-        path: "/user",
+        path: "/admin/user",
         icon: "game-icons:progression"
     },
     {
         name: "Katgoriyalar",
-        path: "/category",
+        path: "/admin/category",
         icon: "ri:todo-fill"
     },
     {
         name: "Fanlar",
-        path: "/subject",
+        path: "/admin/subject",
         icon: "game-icons:progression"
     },
     {
         name: "Materiallar",
-        path: "/file",
+        path: "/admin/file",
         icon: "eos-icons:product-subscriptions"
         
     },
     {
         name: "To'lov tizimlari",
-        path: "/payment",
+        path: "/admin/payment",
         icon: "ic:baseline-cloud-done"
     },
     {
         name: "Obunalar",
-        path: "/subscription",
+        path: "/admin/subscription",
         icon: "ic:baseline-cloud-done"
     },
     {
         name: "Obunalar tarixi",
-        path: "/history/subscription",
+        path: "/admin/history/subscription",
         icon: "ic:baseline-cloud-done"
     },
 ];

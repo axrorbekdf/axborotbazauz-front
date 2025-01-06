@@ -2,6 +2,9 @@
 
 const modelStore = useHomeStore();
 const loadingStore = useLoadingStore();  
+const route = useRoute()
+// const subjectSlug = route.params.subject_slug;
+const categorySlug = route.params.category_slug;
 
 const routeInfo = defineProps({
   route: {
@@ -9,6 +12,10 @@ const routeInfo = defineProps({
     default: "/document/category/",
     required: false
   }
+});
+
+watchEffect(() => {
+  // modelStore.getAllCategories(search.value);
 });
 
 onMounted(async () => {
@@ -32,9 +39,18 @@ onMounted(async () => {
                 </div>
                 <div class="flex flex-wrap gap-4 mt-6">
                     <!-- <NuxtLink to="/category" class="px-4 py-2 bg-purple-500 text-white rounded-full shadow hover:bg-purple-600">Kategoriya</NuxtLink> -->
-                    <NuxtLink to="/" class="px-4 py-2 bg-purple-500 text-white rounded-full shadow hover:bg-purple-600">Barchasi 450</NuxtLink>
+                    <NuxtLink to="/" class="px-4 py-2 rounded-full shadow bg-purple-500 text-white hover:bg-purple-600">Barchasi 450</NuxtLink>
 
-                    <NuxtLink :to="routeInfo.route+item.slug" v-for="item in modelStore.getCategories" :key="item" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">{{ item.name }} {{ item.subjects.length }}</NuxtLink>
+                    <NuxtLink
+                      :class="categorySlug === item.slug ? 'bg-purple-500 text-white hover:bg-purple-600':'bg-gray-200 text-purple-700 hover:bg-purple-300'"
+                      :to="routeInfo.route+item.slug" 
+                      v-for="(item) in modelStore.getCategories" 
+                      :key="item" 
+                      class="px-4 py-2 rounded-full shadow"
+                    >
+                      {{ item.name }} {{ item.subjects.length }}
+                    </NuxtLink>
+                    
                     <!-- <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Diplom ishlar 450</NuxtLink>
                     <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
                     <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>

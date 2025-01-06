@@ -19,7 +19,7 @@ const subjectSlug = route.params.subject_slug;
         <HomeSubjects/>
 
         <!-- Recent Items Section -->
-        <HomeRecentItems />
+        <!-- <HomeRecentItems /> -->
 
         <!-- Footer Wave -->
         <HomeFooter />
