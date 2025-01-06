@@ -11,7 +11,7 @@ export const localApiPoint = 'http://127.0.0.1:8000/api/';
 export const sidebarItems = [
     {
         name: "Dashboard",
-        path: "/",
+        path: "/dashboard",
         icon: "radix-icons:dashboard"
     },
     {
@@ -50,29 +50,4 @@ export const sidebarItems = [
         path: "/history/subscription",
         icon: "ic:baseline-cloud-done"
     },
-    // {
-    //     name: "Region",
-    //     path: "/region",
-    //     icon: "ic:baseline-cloud-done"
-    // },
-    // {
-    //     name: "Language",
-    //     path: "/language",
-    //     icon: "ic:baseline-cloud-done"
-    // },
-    // {
-    //     name: "Master",
-    //     path: "/master",
-    //     icon: "ic:baseline-cloud-done"
-    // },
-    // {
-    //     name: "Master example work",
-    //     path: "/master-example-work",
-    //     icon: "ic:baseline-cloud-done"
-    // },
-    // {
-    //     name: "Comment",
-    //     path: "/comment",
-    //     icon: "ic:baseline-cloud-done"
-    // }
 ];

@@ -23,7 +23,7 @@ const toggleMenu = () => {
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex gap-6 text-lg">
           <NuxtLink to="/" class="hover:text-yellow-400">Bosh sahifa</NuxtLink>
-          <NuxtLink to="/category" class="hover:text-yellow-400">Biz haqimizda</NuxtLink>
+          <NuxtLink to="/payment" class="hover:text-yellow-400">Biz haqimizda</NuxtLink>
           <NuxtLink to="/category" class="hover:text-yellow-400">Tariflar</NuxtLink>
           <NuxtLink to="/category" class="hover:text-yellow-400">Qoidalar</NuxtLink>
           <NuxtLink to="/category" class="hover:text-yellow-400">Reklama beruvchilar uchun</NuxtLink>

@@ -120,8 +120,8 @@ function modalDelete(row: any){
 
 <template>
   <!-- <UiLoader/> -->
-  <!-- <UiLoader v-if="loadingStore.isLoading" /> -->
-  <p v-if="loadingStore.isLoading">Yuklanmoqda</p>
+  <UiLoader v-if="loadingStore.isLoading" />
+  <!-- <p v-if="loadingStore.isLoading">Yuklanmoqda</p> -->
   <template v-else>
       <div>
         <CrudViewModel :is-open="isOpenView" :toggle-show="modalShowView" :model="model.modelStore.oneModel"/>

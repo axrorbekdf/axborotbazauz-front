@@ -61,7 +61,8 @@ const logout = async () => {
             <nuxt-link to="/" class="flex items-center space-x-1">
                 <NuxtImg src="/logo.png" width="50" height="50" />
 
-                <span class="text-2xl font-medium">Axborot Baza</span>
+                <!-- <span class="text-2xl font-medium">Axborot Baza</span> -->
+                <div class="text-3xl font-bold">Axborot<span class="text-yellow-400">Baza</span></div>
             </nuxt-link>
 
             <div class="flex items-center space-x-2">
