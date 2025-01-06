@@ -1,35 +1,61 @@
 <script setup lang="ts">
 
+const modelStore = useHomeStore();
+const loadingStore = useLoadingStore();  
 
+const routeInfo = defineProps({
+  route: {
+    type: String,
+    default: "/document/subject/",
+    required: false
+  },
+  categorySlug: {
+    type: String,
+    default: "",
+    required: false
+  }
+});
+
+onMounted(async () => {
+  await modelStore.getAllSubjects()
+  .finally(() => {
+    loadingStore.set(false);
+  }); 
+});
 </script>
 
 <template>
-    <section class="container max-w-screen-xl mx-auto py-12 px-4">
-        <div class="grid grid-cols-2 md:grid-cols-6 gap-6 bg-yellow-100 p-6 rounded-lg">
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <div class="text-center font-bold">Adabiyot</div>
-        <!-- Add more items as needed -->
-        </div>
-    </section>
+    <UiLoader v-if="loadingStore.isLoading" />
+    <template v-else>
+        <section class="container max-w-screen-xl mx-auto py-12 px-4">
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-6 bg-yellow-100 p-6 rounded-lg">
+                <NuxtLink :to="routeInfo.route+item.slug" v-for="item in modelStore.getSubjects" :key="item" class="text-center font-bold">{{ item.name }}</NuxtLink>
+
+                <!-- <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
+                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink> -->
+                <!-- Add more items as needed -->
+            </div>
+        </section>
+    </template>
+    
 </template>
