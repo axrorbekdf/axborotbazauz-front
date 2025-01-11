@@ -13,6 +13,6 @@ const modelCrud = new CrudMaterial();
 </script>
  
 <template>
-    <CrudDataTableModel :model-store="modelStore" :model-crud="modelCrud"/>
+    <CrudDataTableModel :model-type="'material'" :model-store="modelStore" :model-crud="modelCrud"/>
 </template>
 

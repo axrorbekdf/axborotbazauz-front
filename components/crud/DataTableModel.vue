@@ -12,6 +12,10 @@ const model = defineProps({
     type: Object,
     default: {},
     required: true
+  },
+  modelType: {
+    type: String,
+    default: "",
   }
 });
 
@@ -124,7 +128,7 @@ function modalDelete(row: any){
   <!-- <p v-if="loadingStore.isLoading">Yuklanmoqda</p> -->
   <template v-else>
       <div>
-        <CrudViewModel :is-open="isOpenView" :toggle-show="modalShowView" :model="model.modelStore.oneModel"/>
+        <CrudViewModel :is-open="isOpenView" :toggle-show="modalShowView" :model="model.modelCrud.getFormFields(model.modelStore.oneModel)" :model-type="model.modelType"/>
         <CrudStoreModel :is-open="isOpenStore" :toggle-show="modalShowStore" :model="model.modelCrud.getFormFields()" :create-model="modalStore"/>
         <CrudUpdateModel :is-open="isOpenUpdate" :toggle-show="modalShowUpdate" :model="model.modelCrud.getFormFields(model.modelStore.oneModel)" :update-model="modalUpdate"/>
 

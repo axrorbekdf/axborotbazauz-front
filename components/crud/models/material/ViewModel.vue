@@ -1,40 +1,50 @@
 <script setup lang="ts">
 
+const props = defineProps({
+    model: {
+        type: Object,
+        default: {},
+        required: true
+    }
+})
+
+console.log(props.model);
+
 // Slider data
-const pages = ref([
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-]);
+// const pages = ref([
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+//     { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
+// ]);
 
 // Configurations
 const slidesToShow = 4; // Number of slides to show at a time
@@ -59,45 +69,22 @@ const subject_id = ref(0)
 </script>
  
 <template>
-
-    <!-- Container -->
-  <div class="max-w-4xl mx-auto">
-    <!-- Top Section -->
-    <div class="flex flex-col gap-4 mb-6">
-      <!-- Long Rectangle -->
-      <div class="h-6 rounded my-2">
-        <UInput v-model="title" />
-      </div>
-
-      <!-- Two Smaller Rectangles -->
-      <div class="flex gap-4 my-2">
-        <div class="h-6 w-1/2">
-            <USelectMenu
-                v-model="category_id"
-                searchable
-                searchable-placeholder="Search a person..."
-                class="w-full"
-                placeholder="Select a person"
-                :options="['Wade Cooper', 'Arlene Mccoy', 'Devon Webb', 'Tom Cook', 'Tanya Fox', 'Hellen Schmidt', 'Caroline Schultz', 'Mason Heaney', 'Claudie Smitham', 'Emil Schaefer']"
-            />
-        </div>
-        <div class="h-6 w-1/2">
-            <USelectMenu
-                v-model="subject_id"
-                searchable
-                searchable-placeholder="Search a person..."
-                class="w-full"
-                placeholder="Select a person"
-                :options="['Wade Cooper', 'Arlene Mccoy', 'Devon Webb', 'Tom Cook', 'Tanya Fox', 'Hellen Schmidt', 'Caroline Schultz', 'Mason Heaney', 'Claudie Smitham', 'Emil Schaefer']"
-            />
-        </div>
-      </div>
-
-      <!-- Center Rectangle -->
-      <div class="h-6 w-1/3 mx-auto bg-gray-300 rounded">
-        <UInput type="file" size="sm" icon="i-heroicons-folder" aria-placeholder="Faylni tanlang"/>
-      </div>
-    </div>
+  <div>
+    <table class="w-full table-auto border-collapse border border-gray-200">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="border border-gray-300 px-4 py-2 text-left">Nomi</th>
+          <th class="border border-gray-300 px-4 py-2 text-left">Qiymati {{ props.model.modelStore }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hover:bg-gray-100" v-for="(property, key) in props.model" :key="property" v-show="!property.hidden">
+          <td class="border border-gray-300 px-4 py-2">{{ property.name }}</td>
+          <td class="border border-gray-300 px-4 py-2">{{ property.value }}</td>
+        </tr>
+        
+      </tbody>
+    </table>
 
     <!-- Divider -->
     <hr class="border-gray-400 mb-6">
@@ -116,11 +103,11 @@ const subject_id = ref(0)
                     >
                         <!-- Each Slide -->
                         <div
-                            v-for="(slide, index) in pages"
+                            v-for="(slide, index) in props.model.pages.value"
                             :key="index"
                             :class="`flex-shrink-0 w-[calc(100%/${slidesToShow})] bg-gray-300 flex items-center justify-center rounded-lg h-64 mx-4 my-4`"
                         >
-                            <img :src="slide.image" :alt="'Slide ' + (index + 1)" class="object-cover w-full h-full rounded-lg" />
+                            <img :src="'http://127.0.0.1:8000/storage/'+slide.previewPath" :alt="'Slide ' + (index + 1)" class="object-cover w-full h-full rounded-lg" />
                         </div>
                     </div>
 

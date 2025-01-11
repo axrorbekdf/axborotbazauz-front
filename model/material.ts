@@ -1,9 +1,6 @@
 
 export default class CrudMaterial{
 
-  modelStore = "CrudModelsMaterialViewModel";
-  modelView = "material";
-
   getFormFields(model:any = {}){
     
     return {
@@ -19,7 +16,7 @@ export default class CrudMaterial{
       },
       title: {
         type: String,
-        name: "title",
+        name: "Nomi",
         rules: {
           value: "required",
           message: "To'ldirilishi shart!"
@@ -86,6 +83,16 @@ export default class CrudMaterial{
         },
         hidden: false,
         value: (JSON.stringify(model) !== "{}") ? model['type'] : null
+      },
+      pages: {
+        type: Array,
+        name: "Sahifalar",
+        // rules: {
+        //   value: "required",
+        //   message: "To'ldirilishi shart!"
+        // },
+        hidden: true,
+        value: (JSON.stringify(model) !== "{}") ? model['pages'] : null
       },
     };
   }
