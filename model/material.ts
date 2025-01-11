@@ -1,5 +1,8 @@
 
-export default class CrudFile{
+export default class CrudMaterial{
+
+  modelStore = "CrudModelsMaterialViewModel";
+  modelView = "material";
 
   getFormFields(model:any = {}){
     
@@ -96,38 +99,44 @@ export default class CrudFile{
       label: 'ID'
     },{
       key: 'title',
-      label: 'Ism'
+      label: 'Nomi'
     },{
-      key: 'category_id',
+      key: 'category.name',
       label: 'Kategoriya'
     }, {
-      key: 'subject_id',
+      key: 'subject.name',
       label: 'Fan'
-    }, {
-      key: 'slug',
-      label: 'slug'
-    }, {
+    }, 
+    // {
+    //   key: 'slug',
+    //   label: 'slug'
+    // }, 
+    {
       key: 'downloads',
-      label: 'downloads'
-    }, {
-      key: 'path',
-      label: 'path'
-    }, {
+      label: 'Yuklanishlar'
+    }, 
+    // {
+    //   key: 'path',
+    //   label: 'path'
+    // }, 
+    {
       key: 'size',
-      label: 'size'
+      label: 'O\'lchami'
     }, {
       key: 'type',
-      label: 'type'
+      label: 'Turi'
     }, {
       key: 'responsible_worker',
-      label: 'responsible_worker'
+      label: 'Kim tomonidan'
     }, {
       key: 'created_at',
-      label: 'created_at'
-    },{
-      key: 'updated_at',
-      label: 'updated_at'
-    },{
+      label: 'Sana'
+    },
+    // {
+    //   key: 'updated_at',
+    //   label: 'updated_at'
+    // },
+    {
       key: 'actions'
     }];
 

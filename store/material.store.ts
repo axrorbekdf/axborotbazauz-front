@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
-import FileService from "~/services/FileService";
+import MaterialService from "~/services/MaterialService";
 
 
-export const useFileStore = defineStore("file", {
+export const useMaterialStore = defineStore("material", {
     state: () => ({
         model: {},
         models: [],
@@ -18,7 +18,7 @@ export const useFileStore = defineStore("file", {
 
         async getAllModel(search: String|null, perPage: Number|null){
             try {
-                await FileService.index({
+                await MaterialService.index({
                   search: search,
                   perPage: perPage
                 })
@@ -40,7 +40,7 @@ export const useFileStore = defineStore("file", {
         async createModel(model: any){
           try {
           
-              await FileService.store(model)
+              await MaterialService.store(model)
               .then((res: any) => {
 
                 this.getAllModel(null, null);
@@ -59,7 +59,7 @@ export const useFileStore = defineStore("file", {
         async updateModel(id:number, model: any){
           try {
           
-              await FileService.update(id, model)
+              await MaterialService.update(id, model)
               .then((res: any) => {
 
                 this.getAllModel(null, null);
@@ -78,7 +78,7 @@ export const useFileStore = defineStore("file", {
         async deleteModel(id:number){
           try {
           
-              await FileService.delete(id)
+              await MaterialService.delete(id)
               .then((res: any) => {
 
                 this.getAllModel(null, null);

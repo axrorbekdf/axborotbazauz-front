@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CrudFile from '~/model/file';
+import CrudMaterial from '~/model/material';
 
 
 definePageMeta({
@@ -7,8 +7,8 @@ definePageMeta({
 });
 
 // const loadingStore = useLoadingStore();  
-const modelStore = useFileStore();      
-const modelCrud = new CrudFile(); 
+const modelStore = useMaterialStore();      
+const modelCrud = new CrudMaterial();  
 
 </script>
  

@@ -11,9 +11,9 @@ definePageMeta({
 const modelStore = useSubjectStore();      
 const modelCrud = new CrudSubject(); 
 
-</script>
+</script> 
  
 <template> 
-      <CrudDataTableModel :model-store="modelStore" :model-crud="modelCrud"/>
+        <CrudDataTableModel :model-store="modelStore" :model-crud="modelCrud"/>
 </template>
 

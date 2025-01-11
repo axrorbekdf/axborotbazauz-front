@@ -31,7 +31,7 @@ export const sidebarItems = [
     },
     {
         name: "Materiallar",
-        path: "/admin/file",
+        path: "/admin/material",
         icon: "eos-icons:product-subscriptions"
         
     },
