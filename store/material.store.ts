@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import MaterialService from "~/services/MaterialService";
+import MaterialService from "~/services/Material";
 
 
 export const useMaterialStore = defineStore("material", {

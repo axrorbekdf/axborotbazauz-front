@@ -1,16 +1,19 @@
 import { defineStore } from "pinia";
 import CategoryService from "~/services/Category";
 import SubjectService from '~/services/Subject';
+import MaterialService from '~/services/Material';
 
 
 export const useHomeStore = defineStore("home", {
     state: () => ({
         categories: [],
         subjects: [],
+        materials: [],
     }),
     getters: {
         getCategories: state => state.categories,
-        getSubjects: state => state.subjects
+        getSubjects: state => state.subjects,
+        getMaterials: state => state.materials
     },
     actions: {
         async getAllCategories(search: String|null = null, perPage: Number|null = null){
@@ -52,6 +55,33 @@ export const useHomeStore = defineStore("home", {
                 console.error('Failed to load posts:', error);
       
             }
-      }
+        },
+        async getAllRecentMaterials(
+            search: String|null = null, 
+            perPage: Number|null = null, 
+            category: Number|null = null,
+            subject: Number|null = null
+          ){
+          try {
+              await MaterialService.index({
+                search: search,
+                perPage: perPage,
+                category: category,
+                subject: subject,
+              })
+              .then((res: any) => {
+
+                  this.materials = res.result.data;
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+        }
     },
 });

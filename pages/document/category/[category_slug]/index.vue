@@ -20,7 +20,7 @@ const categorySlug = route.params.category_slug as string;
     <HomeSubjects :route="'/document/category/'" :category-slug="categorySlug"/>
 
     <!-- Recent Items Section -->
-    <HomeRecentItems />
+    <HomeRecentItems :category-id="categorySlug"/>
 
     <!-- Footer Wave -->
     <HomeFooter />

@@ -42,8 +42,8 @@ onMounted(async () => {
                     <NuxtLink to="/" class="px-4 py-2 rounded-full shadow bg-purple-500 text-white hover:bg-purple-600">Barchasi 450</NuxtLink>
 
                     <NuxtLink
-                      :class="categorySlug === item.slug ? 'bg-purple-500 text-white hover:bg-purple-600':'bg-gray-200 text-purple-700 hover:bg-purple-300'"
-                      :to="routeInfo.route+item.slug" 
+                      :class="categorySlug === item?.slug ? 'bg-purple-500 text-white hover:bg-purple-600':'bg-gray-200 text-purple-700 hover:bg-purple-300'"
+                      :to="routeInfo.route+item?.slug" 
                       v-for="(item) in modelStore.getCategories" 
                       :key="item" 
                       class="px-4 py-2 rounded-full shadow"
