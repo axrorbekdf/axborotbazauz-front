@@ -36,20 +36,19 @@ export default class CrudPayment{
       label: 'ID'
     },{
       key: 'name',
-      label: 'Ism'
+      label: 'Nomi'
     },{
-      key: 'category_id',
-      label: 'Kategoriya'
-    }, {
       key: 'responsible_worker',
-      label: 'responsible_worker'
+      label: 'Kim tomonidan'
     }, {
       key: 'created_at',
-      label: 'created_at'
-    },{
-      key: 'updated_at',
-      label: 'updated_at'
-    },{
+      label: 'Sana'
+    },
+    // {
+    //   key: 'updated_at',
+    //   label: 'updated_at'
+    // },
+    {
       key: 'actions'
     }];
 

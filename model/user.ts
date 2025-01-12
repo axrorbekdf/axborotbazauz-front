@@ -6,7 +6,7 @@ export default class CrudUser{
     return {
       id: {
         type: Number,
-        name: "id",
+        name: "ID",
         rules: {
           value: null,
           message: "To'ldirilishi shart!"
@@ -16,7 +16,7 @@ export default class CrudUser{
       },
       name: {
         type: String,
-        name: "Nomi",
+        name: "Ism Familiya",
         rules: {
           value: "required",
           message: "To'ldirilishi shart!"
@@ -26,7 +26,7 @@ export default class CrudUser{
       },
       phone: {
         type: String,
-        name: "phone",
+        name: "Telefon nomer",
         rules: {
           value: "required",
           message: "To'ldirilishi shart!"
@@ -36,17 +36,17 @@ export default class CrudUser{
       },
       password: {
         type: String,
-        name: "password",
+        name: "Parol",
         rules: {
           value: "required",
           message: "To'ldirilishi shart!"
         },
         hidden: false,
-        value: (JSON.stringify(model) !== "{}") ? model['password'] : null
+        value: (JSON.stringify(model) !== "{}") ? model['password'] : ""
       },
       is_active: {
         type: String,
-        name: "status",
+        name: "Status (1 => 'active' yoki 0 => 'passive')",
         rules: {
           value: "required",
           message: "To'ldirilishi shart!"
@@ -66,23 +66,25 @@ export default class CrudUser{
       label: 'ID'
     },{
       key: 'name',
-      label: 'Ism'
+      label: 'Ism Familiya'
     },{
       key: 'phone',
-      label: 'Telefon'
+      label: 'Telefon nomer'
     }, {
       key: 'is_active',
       label: 'Status'
     }, {
       key: 'responsible_worker',
-      label: 'responsible_worker'
+      label: 'Kim tomonidan'
     }, {
       key: 'created_at',
-      label: 'created_at'
-    },{
-      key: 'updated_at',
-      label: 'updated_at'
-    },{
+      label: 'Sana'
+    },
+    // {
+    //   key: 'updated_at',
+    //   label: 'updated_at'
+    // },
+    {
       key: 'actions'
     }];
 

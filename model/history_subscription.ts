@@ -16,7 +16,7 @@ export default class CrudHistorySubscription{
       },
       user_id: {
         type: String,
-        name: "user_id",
+        name: "Foydalanuvchi",
         rules: {
           value: "required",
           message: "To'ldirilishi shart!"
@@ -26,7 +26,7 @@ export default class CrudHistorySubscription{
       },
       subscription_id: {
         type: String,
-        name: "subscription_id",
+        name: "Obuna",
         rules: {
           value: "required",
           message: "To'ldirilishi shart!"
@@ -36,7 +36,7 @@ export default class CrudHistorySubscription{
       },
       payment_id: {
         type: String,
-        name: "payment_id",
+        name: "To'lov tizimi",
         rules: {
           value: "required",
           message: "To'ldirilishi shart!"
@@ -46,7 +46,7 @@ export default class CrudHistorySubscription{
       },
       start_date: {
         type: String,
-        name: "start_date",
+        name: "Boshlanish kuni",
         rules: {
           value: "required",
           message: "To'ldirilishi shart!"
@@ -56,7 +56,7 @@ export default class CrudHistorySubscription{
       },
       end_date: {
         type: String,
-        name: "end_date",
+        name: "Tugash kuni",
         rules: {
           value: "required",
           message: "To'ldirilishi shart!"
@@ -75,30 +75,32 @@ export default class CrudHistorySubscription{
       key: 'id',
       label: 'ID'
     }, {
-      key: 'user_id',
-      label: 'user_id'
+      key: 'user.name',
+      label: 'Foydalanuvchi'
     }, {
-      key: 'subscription_id',
-      label: 'subscription_id'
+      key: 'subscription.name',
+      label: 'Obuna'
     }, {
       key: 'payment_id',
-      label: 'payment_id'
+      label: 'To\'lov tizimi'
     }, {
       key: 'start_date',
-      label: 'start_date'
+      label: 'Boshlanish kuni'
     }, {
       key: 'end_date',
-      label: 'end_date'
+      label: 'Tugash kuni'
     }, {
       key: 'responsible_worker',
-      label: 'responsible_worker'
+      label: 'Kim tomonidan'
     }, {
       key: 'created_at',
-      label: 'created_at'
-    },{
-      key: 'updated_at',
-      label: 'updated_at'
-    },{
+      label: 'Sana'
+    },
+    // {
+    //   key: 'updated_at',
+    //   label: 'updated_at'
+    // },
+    {
       key: 'actions'
     }];
 

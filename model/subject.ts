@@ -6,7 +6,7 @@ export default class CrudSubject{
     return {
       id: {
         type: Number,
-        name: "id",
+        name: "ID",
         rules: {
           value: null,
           message: "To'ldirilishi shart!"
@@ -38,11 +38,11 @@ export default class CrudSubject{
         type: String,
         name: "Soni",
         rules: {
-          value: "required",
+          // value: "required",
           message: "To'ldirilishi shart!"
         },
-        hidden: false,
-        value: (JSON.stringify(model) !== "{}") ? model['count'] : null
+        hidden: true,
+        value: (JSON.stringify(model) !== "{}") ? model['count'] : 0
       },
     };
   }
@@ -56,26 +56,31 @@ export default class CrudSubject{
       label: 'ID'
     },{
       key: 'name',
-      label: 'Ism'
+      label: 'Nomi'
     },{
-      key: 'category_id',
+      key: 'category.name',
       label: 'Kategoriya'
-    }, {
-      key: 'slug',
-      label: 'slug'
-    }, {
-      key: 'count',
-      label: 'count'
-    }, {
+    }, 
+    // {
+    //   key: 'slug',
+    //   label: 'slug'
+    // }, 
+    // {
+    //   key: 'count',
+    //   label: 'count'
+    // }, 
+    {
       key: 'responsible_worker',
-      label: 'responsible_worker'
+      label: 'Kim tomonidan'
     }, {
       key: 'created_at',
-      label: 'created_at'
-    },{
-      key: 'updated_at',
-      label: 'updated_at'
-    },{
+      label: 'Sana'
+    },
+    // {
+    //   key: 'updated_at',
+    //   label: 'updated_at'
+    // },
+    {
       key: 'actions'
     }];
 

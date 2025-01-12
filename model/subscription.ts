@@ -56,23 +56,25 @@ export default class CrudSubscription{
       label: 'ID'
     },{
       key: 'name',
-      label: 'Ism'
+      label: 'Nomi'
     }, {
       key: 'period',
-      label: 'period'
+      label: 'Amal qilish muddati'
     }, {
       key: 'price',
-      label: 'price'
+      label: 'Narxi'
     }, {
       key: 'responsible_worker',
-      label: 'responsible_worker'
+      label: 'Kim tomonidan'
     }, {
       key: 'created_at',
-      label: 'created_at'
-    },{
-      key: 'updated_at',
-      label: 'updated_at'
-    },{
+      label: 'Sana'
+    },
+    // {
+    //   key: 'updated_at',
+    //   label: 'updated_at'
+    // },
+    {
       key: 'actions'
     }];
 

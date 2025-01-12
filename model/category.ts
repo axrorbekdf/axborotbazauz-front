@@ -1,70 +1,3 @@
-// // Category interfeysi
-// interface ICategory {
-//     id: Number,
-//     name: String,
-//     slug: String,
-//     count: String,
-//     responsible_worker: String,
-//     created_at: String,
-//     updated_at: String,
-// }
-  
-//   // Category sinfi
-// export default class Category {
-//     id: Number;
-//     name: String;
-//     slug: String;
-//     count: String;
-//     responsible_worker: String;
-//     created_at: String;
-//     updated_at: String;
-  
-//     constructor(
-//       id: Number,
-//       name: String,
-//       slug: String,
-//       count: String,
-//       responsible_worker: String,
-//       created_at: String,
-//       updated_at: String
-//     ) {
-
-//       this.id = id;
-//       this.name = name;
-//       this.slug = slug;
-//       this.count = count;
-//       this.responsible_worker = responsible_worker;
-//       this.created_at = created_at;
-//       this.updated_at = updated_at;
-//     }
-  
-//     // To'liq formatlangan ma'lumotlarni qaytarish
-//     getFormattedCategory(): ICategory {
-//       return {
-//         id: this.id,
-//         name: this.name,
-//         slug: this.slug,
-//         count: this.count,
-//         responsible_worker: this.responsible_worker,
-//         created_at: this.created_at,
-//         updated_at: this.updated_at,
-//       };
-//     }
-
-//     // Statik metod: API-dan kelgan obyektni Category sinfiga aylantirish
-//     static fromApiData(apiData: ICategory): Category {
-//       return new Category(
-//         apiData.id,
-//         apiData.name,
-//         apiData.slug,
-//         apiData.count,
-//         apiData.responsible_worker,
-//         apiData.created_at,
-//         apiData.updated_at,
-//       );
-//     }
-// }
-
 export default class CrudCategory{
 
   getFormFields(model:any = {}){
@@ -104,11 +37,11 @@ export default class CrudCategory{
         type: String,
         name: "Soni",
         rules: {
-          value: "required",
+          // value: "required",
           message: "To'ldirilishi shart!"
         },
-        hidden: false,
-        value: (JSON.stringify(model) !== "{}") ? model['count'] : null
+        hidden: true,
+        value: (JSON.stringify(model) !== "{}") ? model['count'] : 0
       },
       // responsible_worker: {
       //   type: String,
@@ -152,23 +85,28 @@ export default class CrudCategory{
       label: 'ID'
     },{
       key: 'name',
-      label: 'Ism'
-    }, {
-      key: 'slug',
-      label: 'slug'
-    }, {
-      key: 'count',
-      label: 'count'
-    }, {
+      label: 'Nomi'
+    }, 
+    // {
+    //   key: 'slug',
+    //   label: 'slug'
+    // }, 
+    // {
+    //   key: 'count',
+    //   label: 'count'
+    // },
+    {
       key: 'responsible_worker',
-      label: 'responsible_worker'
+      label: 'Kim tomonidan'
     }, {
       key: 'created_at',
-      label: 'created_at'
-    },{
-      key: 'updated_at',
-      label: 'updated_at'
-    },{
+      label: 'Sana'
+    },
+    // {
+    //   key: 'updated_at',
+    //   label: 'updated_at'
+    // },
+    {
       key: 'actions'
     }];
 
