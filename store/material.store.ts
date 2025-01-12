@@ -56,6 +56,26 @@ export const useMaterialStore = defineStore("material", {
             }
         },
 
+
+        async materialUploded(material: any){
+          try {
+          
+              await MaterialService.fileUploaded(material)
+              .then((res: any) => {
+
+                this.setOneModel(res.result.data);
+          
+              }).catch((error) => {
+                  
+                console.error('Failed to load posts:', error);
+              });
+          
+            } catch (error) {
+                console.error('Failed to load posts:', error);
+      
+            }
+        },
+
         async updateModel(id:number, model: any){
           try {
           

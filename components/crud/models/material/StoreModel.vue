@@ -1,61 +1,74 @@
 <script setup lang="ts">
+const materialStore = useMaterialStore();
+const categoryStore = useCategoryStore();
+const subjectStore = useSubjectStore();
+
+const props = defineProps({
+    model: {
+        type: Object,
+        default: {},
+        required: true
+    },
+})
 
 // Slider data
-const pages = ref([
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-    { image: "https://i.pinimg.com/736x/06/dd/5a/06dd5a642a9c37906d69227152eb9fc0.jpg" },
-]);
+const pages = ref([]);
+const categories = ref([]);
+const subjects = ref([]);
 
-// Configurations
-const slidesToShow = 4; // Number of slides to show at a time
-const currentIndex = ref(0);
+onMounted(async () => {
+  // await materialStore.getAllModel(null);
+  await categoryStore.getAllModel(null, null);
+  await subjectStore.getAllModel(null, null);
 
-// Scroll to next set of slides
-const scrollToNext = () => {
-//   if (currentIndex.value < slides.value.length) {
-    currentIndex.value +=2;
-//   }
-};
+  categories.value = categoryStore.getModels;
+  subjects.value = subjectStore.getModels;
+  
+});
 
-// Scroll to previous set of slides
-const scrollToPrev = () => {
-  if (currentIndex.value > 0) {
-    currentIndex.value -=2;
+const title = ref(null)
+const category_id = ref(1)
+const subject_id = ref(1)
+const selectedFile = ref<File | null>(null);
+
+
+const uploadData = async () => {
+  const formData = new FormData();
+  if (selectedFile.value) {
+    formData.append('file', selectedFile.value); // 'file' — backendda kutilayotgan nom
+  }
+  
+  // Parametrlarni qo'shish
+  formData.append('title', String(title.value));
+  formData.append('category_id', String(category_id.value));
+  formData.append('subject_id', String(subject_id.value));
+
+  try {
+    const response = await fetch('http://127.0.0.1:8000/api/material/uploaded', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Authorization: 'Bearer 2|tx80tbuh9qEM1PmRToFCQFfNCtGoUWVlFn8ZuLNn1f8b8b60',
+      },
+    });
+
+    const result = await response.json();
+    pages.value = result.result.pages;
+    console.log(result);
+  } catch (error) {
+    console.error('Xatolik yuz berdi:', error);
   }
 };
-const title = ref("")
-const category_id = ref(0)
-const subject_id = ref(0)
+
+// Faylni tanlash funksiyasi
+const onFileChange = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  const files = target.files;
+  if (files && files.length > 0) {
+    selectedFile.value = files[0]; // Birinchi faylni tanlash
+  }
+};
+
 </script>
  
 <template>
@@ -64,9 +77,28 @@ const subject_id = ref(0)
   <div class="max-w-4xl mx-auto">
     <!-- Top Section -->
     <div class="flex flex-col gap-4 mb-6">
+
+      <div class="flex gap-4 my-2">
+        <div class="h-6 w-1/2">
+          <input type="file" @change="onFileChange($event)" />
+        </div>
+        <div class="h-8 w-1/2 flex justify-end items-end">
+          <!-- <button class="bg-slate-700 text-white rounded-sm p-2" @click="uploadData" :disabled="!selectedFile">Yuklash1</button> -->
+          <UButton
+            icon="i-heroicons-pencil-square"
+            size="lg"
+            color="primary"
+            variant="solid"
+            label="Yuklash"
+            :trailing="false"
+            @click="uploadData" 
+            :disabled="!selectedFile"
+          />
+        </div>
+      </div>
       <!-- Long Rectangle -->
       <div class="h-6 rounded my-2">
-        <UInput v-model="title" />
+        <UInput v-model="title" size="lg" />
       </div>
 
       <!-- Two Smaller Rectangles -->
@@ -75,28 +107,36 @@ const subject_id = ref(0)
             <USelectMenu
                 v-model="category_id"
                 searchable
-                searchable-placeholder="Search a person..."
+                searchable-placeholder="Kategoriyani qidirish"
                 class="w-full"
                 placeholder="Select a person"
-                :options="['Wade Cooper', 'Arlene Mccoy', 'Devon Webb', 'Tom Cook', 'Tanya Fox', 'Hellen Schmidt', 'Caroline Schultz', 'Mason Heaney', 'Claudie Smitham', 'Emil Schaefer']"
+                :options="categories" 
+                value-attribute="id"
+                option-attribute="name"
+                size="lg"
             />
         </div>
         <div class="h-6 w-1/2">
             <USelectMenu
                 v-model="subject_id"
                 searchable
-                searchable-placeholder="Search a person..."
+                searchable-placeholder="Fanni qidirish"
                 class="w-full"
                 placeholder="Select a person"
-                :options="['Wade Cooper', 'Arlene Mccoy', 'Devon Webb', 'Tom Cook', 'Tanya Fox', 'Hellen Schmidt', 'Caroline Schultz', 'Mason Heaney', 'Claudie Smitham', 'Emil Schaefer']"
+                :options="subjects"
+                value-attribute="id"
+                option-attribute="name"
+                size="lg"
             />
         </div>
       </div>
 
-      <!-- Center Rectangle -->
+      <!-- Center Rectangle
       <div class="h-6 w-1/3 mx-auto bg-gray-300 rounded">
-        <UInput type="file" size="sm" icon="i-heroicons-folder" aria-placeholder="Faylni tanlang"/>
-      </div>
+
+        
+        
+      </div> -->
     </div>
 
     <!-- Divider -->
@@ -105,61 +145,8 @@ const subject_id = ref(0)
     <!-- Bottom Section -->
     <div class="grid grid-cols-1 gap-1">
 
-            <div class="bg-gray-100 flex items-center justify-center rounded-lg">
-                <!-- Slider Container -->
-                <div class="relative w-full max-w-6xl overflow-hidden">
-                    <!-- Slider Items -->
-                    <div
-                        ref="slider"
-                        :style="{ transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)` }"
-                        class="flex transition-transform duration-10 ease-in-out mx-4"
-                    >
-                        <!-- Each Slide -->
-                        <div
-                            v-for="(slide, index) in pages"
-                            :key="index"
-                            :class="`flex-shrink-0 w-[calc(100%/${slidesToShow})] bg-gray-300 flex items-center justify-center rounded-lg h-64 mx-4 my-4`"
-                        >
-                            <img :src="slide.image" :alt="'Slide ' + (index + 1)" class="object-cover w-full h-full rounded-lg" />
-                        </div>
-                    </div>
-
-                    <!-- Navigation Buttons -->
-                    <button
-                        @click="scrollToPrev"
-                        class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white w-10 h-10 rounded-full flex items-center justify-center"
-                    >
-                        &#8592;
-                    </button>
-                    <button
-                        @click="scrollToNext"
-                        class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white w-10 h-10 rounded-full flex items-center justify-center"
-                    >
-                        &#8594;
-                    </button>
-                </div>
-            </div>
-
-
-
+          <UiSlider :pages="pages"/>
 
     </div>
   </div>
 </template>
-
-<style>
-/* Slider styles */
-.slider-container {
-  scroll-snap-type: x mandatory;
-  overflow-x: scroll;
-  scrollbar-width: none; /* For Firefox */
-}
-
-.slider-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari */
-}
-
-.slider-item {
-  scroll-snap-align: center;
-}
-</style>

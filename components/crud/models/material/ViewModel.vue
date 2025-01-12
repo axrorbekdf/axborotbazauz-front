@@ -5,10 +5,11 @@ const props = defineProps({
         type: Object,
         default: {},
         required: true
-    }
+    },
 })
 
 console.log(props.model);
+
 
 // Slider data
 // const pages = ref([
@@ -63,90 +64,74 @@ const scrollToPrev = () => {
     currentIndex.value -=2;
   }
 };
-const title = ref("")
-const category_id = ref(0)
-const subject_id = ref(0)
+
 </script>
  
-<template>
-  <div>
-    <table class="w-full table-auto border-collapse border border-gray-200">
-      <thead class="bg-gray-200">
-        <tr>
-          <th class="border border-gray-300 px-4 py-2 text-left">Nomi</th>
-          <th class="border border-gray-300 px-4 py-2 text-left">Qiymati {{ props.model.modelStore }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="hover:bg-gray-100" v-for="(property, key) in props.model" :key="property" v-show="!property.hidden">
-          <td class="border border-gray-300 px-4 py-2">{{ property.name }}</td>
-          <td class="border border-gray-300 px-4 py-2">{{ property.value }}</td>
-        </tr>
-        
-      </tbody>
-    </table>
+<template> 
+  <div>    
+      <table class="w-full table-auto border-collapse border border-gray-200">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="border border-gray-300 px-4 py-2 text-left">Nomi</th>
+            <th class="border border-gray-300 px-4 py-2 text-left">Qiymati {{ props.model.modelStore }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hover:bg-gray-100" v-for="(property, key) in props.model" :key="property" v-show="!property.hidden">
+            <td class="border border-gray-300 px-4 py-2">{{ property.name }}</td>
 
-    <!-- Divider -->
-    <hr class="border-gray-400 mb-6">
+            <td v-if="property?.relation?.status" class="border border-gray-300 px-4 py-2">{{ property?.value[property?.relation?.name] }}</td>
+            <td v-else class="border border-gray-300 px-4 py-2">{{ property.value }}</td>
+          </tr>
+          
+        </tbody>
+      </table>
 
-    <!-- Bottom Section -->
-    <div class="grid grid-cols-1 gap-1">
+      <!-- Divider -->
+      <hr class="border-gray-400 mb-6">
 
-            <div class="bg-gray-100 flex items-center justify-center rounded-lg">
-                <!-- Slider Container -->
-                <div class="relative w-full max-w-6xl overflow-hidden">
-                    <!-- Slider Items -->
-                    <div
-                        ref="slider"
-                        :style="{ transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)` }"
-                        class="flex transition-transform duration-10 ease-in-out mx-4"
-                    >
-                        <!-- Each Slide -->
-                        <div
-                            v-for="(slide, index) in props.model.pages.value"
-                            :key="index"
-                            :class="`flex-shrink-0 w-[calc(100%/${slidesToShow})] bg-gray-300 flex items-center justify-center rounded-lg h-64 mx-4 my-4`"
-                        >
-                            <img :src="'http://127.0.0.1:8000/storage/'+slide.previewPath" :alt="'Slide ' + (index + 1)" class="object-cover w-full h-full rounded-lg" />
-                        </div>
-                    </div>
+      <!-- Bottom Section -->
+      <div class="grid grid-cols-1 gap-1">
 
-                    <!-- Navigation Buttons -->
-                    <button
-                        @click="scrollToPrev"
-                        class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white w-10 h-10 rounded-full flex items-center justify-center"
-                    >
-                        &#8592;
-                    </button>
-                    <button
-                        @click="scrollToNext"
-                        class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white w-10 h-10 rounded-full flex items-center justify-center"
-                    >
-                        &#8594;
-                    </button>
-                </div>
-            </div>
+              <div class="bg-gray-100 flex items-center justify-center rounded-lg">
+                  <!-- Slider Container -->
+                  <div class="relative w-full max-w-6xl overflow-hidden">
+                      <!-- Slider Items -->
+                      <div
+                          ref="slider"
+                          :style="{ transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)` }"
+                          class="flex transition-transform duration-10 ease-in-out mx-4"
+                      >
+                          <!-- Each Slide -->
+                          <div
+                              v-for="(slide, index) in props.model.pages.value"
+                              :key="index"
+                              :class="`flex-shrink-0 w-[calc(100%/${slidesToShow})] bg-gray-300 flex items-center justify-center rounded-lg h-64 mx-4 my-4`"
+                          >
+                              <img :src="'http://127.0.0.1:8000/storage/'+slide.previewPath" :alt="'Slide ' + (index + 1)" class="object-cover w-full h-full rounded-lg" />
+                          </div>
+                      </div>
+
+                      <!-- Navigation Buttons -->
+                      <button
+                          @click="scrollToPrev"
+                          class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white w-10 h-10 rounded-full flex items-center justify-center"
+                      >
+                          &#8592;
+                      </button>
+                      <button
+                          @click="scrollToNext"
+                          class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white w-10 h-10 rounded-full flex items-center justify-center"
+                      >
+                          &#8594;
+                      </button>
+                  </div>
+              </div>
 
 
 
 
-    </div>
+      </div>
+    
   </div>
 </template>
-
-<style>
-/* Slider styles */
-.slider-container {
-  scroll-snap-type: x mandatory;
-  overflow-x: scroll;
-  scrollbar-width: none; /* For Firefox */
-}
-
-.slider-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari */
-}
-
-.slider-item {
-  scroll-snap-align: center;
-}
-</style>

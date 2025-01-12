@@ -23,17 +23,27 @@ import { useApiFetch } from "./FetchService";
         })
     },
 
-    store(catgory: object){
+    store(material: object){
         return useApiFetch()("material/store", {
             method: "POST",
-            body: catgory
+            body: material
         })
     },
 
-    update(id: any, catgory: object){
+    fileUploaded(material: object){
+        return useApiFetch()(`material/uploaded`, {
+            method: "POST",
+            body: material,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        })
+    },
+
+    update(id: any, material: object){
         return useApiFetch()(`material/update/${id}`, {
             method: "PUT",
-            body: catgory
+            body: material
         })
     },
 

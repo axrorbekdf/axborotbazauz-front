@@ -88,9 +88,13 @@ const isOpenView = ref(false);
 const isOpenStore = ref(false);
 const isOpenUpdate = ref(false);
 
-function modalShowView(row:any){
-  isOpenView.value = !isOpenView.value;
+function modalShowView(row:any = null){
+  isOpenView.value = true;
   model.modelStore.setOneModel(row);
+}
+
+function modalShowViewClose(){
+  isOpenView.value = false;
 }
 
 function modalShowStore(){
@@ -128,8 +132,8 @@ function modalDelete(row: any){
   <!-- <p v-if="loadingStore.isLoading">Yuklanmoqda</p> -->
   <template v-else>
       <div>
-        <CrudViewModel :is-open="isOpenView" :toggle-show="modalShowView" :model="model.modelCrud.getFormFields(model.modelStore.oneModel)" :model-type="model.modelType"/>
-        <CrudStoreModel :is-open="isOpenStore" :toggle-show="modalShowStore" :model="model.modelCrud.getFormFields()" :create-model="modalStore"/>
+        <CrudViewModel :is-open="isOpenView" :toggle-show-close="modalShowViewClose" :model="model.modelCrud.getFormFields(model.modelStore.oneModel)" :model-type="model.modelType"/>
+        <CrudStoreModel :is-open="isOpenStore" :toggle-show="modalShowStore" :model="model.modelCrud.getFormFields()" :create-model="modalStore" :model-type="model.modelType"/>
         <CrudUpdateModel :is-open="isOpenUpdate" :toggle-show="modalShowUpdate" :model="model.modelCrud.getFormFields(model.modelStore.oneModel)" :update-model="modalUpdate"/>
 
 

@@ -7,7 +7,7 @@ definePageMeta({
 });
 
 // const loadingStore = useLoadingStore();  
-const modelStore = useMaterialStore();      
+const modelStore = useMaterialStore(); 
 const modelCrud = new CrudMaterial();  
 
 </script>

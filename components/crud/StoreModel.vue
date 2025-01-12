@@ -6,6 +6,10 @@ const props = defineProps({
         default: {},
         required: true
     },
+    modelType: {
+      type: String,
+      default: "",
+    },
     toggleShow: {
         type: Function,
         required: true
@@ -44,7 +48,12 @@ const props = defineProps({
           </div>
         </template>
 
-        <CrudFormModel :model="model"  :entity-handler="createModel" :toggleShow="toggleShow"/>
+        <div v-if="props.modelType == 'material'">
+          <CrudModelsMaterialStoreModel :model="model"/>
+        </div>
+
+        <CrudFormModel v-else :model="model"  :entity-handler="createModel" :toggleShow="toggleShow"/>
+        
       </UCard>
     </UModal>
   </div>

@@ -44,6 +44,20 @@ export default class CrudMaterial{
         hidden: false,
         value: (JSON.stringify(model) !== "{}") ? model['subject_id'] : null
       },
+      subject: {
+        type: String,
+        name: "Fan",
+        rules: {
+          value: "required",
+          message: "To'ldirilishi shart!"
+        },
+        hidden: false,
+        relation: {
+          name: "name",
+          status: true
+        },
+        value: (JSON.stringify(model) !== "{}") ? model['subject'] : null,
+      },
       downloads: {
         type: String,
         name: "Yuklanishlar soni",
