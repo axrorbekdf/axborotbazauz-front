@@ -1,11 +1,11 @@
-export const logo = 'https://media.graphassets.com/xdIRSn8OSb62Tv2l1og4';
-export const filePath = 'https://apionatilim.vatandoshlarfondi.uz';
+export const apiPoint = 'https://axborotbaza.uz/backend/public/api/';
+export const globalfilePath = 'https://axborotbaza.uz/backend/public/storage/';
 
 
 
-export const apiPoint = 'https://taxi111.osongina.uz/api/';
 // export const localApiPoint = 'http://10.100.104.125:8888/api/';
 export const localApiPoint = 'http://127.0.0.1:8000/api/';
+export const localfilePath = 'http://127.0.0.1:8000/storage/';
 
 
 export const sidebarItems = [
