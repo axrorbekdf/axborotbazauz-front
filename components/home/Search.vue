@@ -48,7 +48,7 @@ onMounted(async () => {
                       :key="item" 
                       class="px-4 py-2 rounded-full shadow"
                     >
-                      {{ item.name }} {{ item.subjects.length }}
+                      {{ item.name }} {{ item.count }}
                     </NuxtLink>
                     
                     <!-- <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Diplom ishlar 450</NuxtLink>

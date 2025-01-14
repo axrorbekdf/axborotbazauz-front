@@ -6,11 +6,11 @@ const categorySlug = route.params.category_slug as string;
 const subjectSlug = route.params.subject_slug;
 </script>
 <template>
-    <div>
+    <!-- <div>
         <h1>Subject Page</h1>
         <p>Category: {{ categorySlug }}</p>
         <p>Subject: {{ subjectSlug }}</p>
-    </div>
+    </div> -->
 
     <!-- Head Section -->
     <HomeHeader />

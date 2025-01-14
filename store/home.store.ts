@@ -1,7 +1,5 @@
 import { defineStore } from "pinia";
-import CategoryService from "~/services/Category";
-import SubjectService from '~/services/Subject';
-import MaterialService from '~/services/Material';
+import HomeService from '~/services/Home';
 
 
 export const useHomeStore = defineStore("home", {
@@ -18,13 +16,13 @@ export const useHomeStore = defineStore("home", {
     actions: {
         async getAllCategories(search: String|null = null, perPage: Number|null = null){
             try {
-                await CategoryService.index({
+                await HomeService.category({
                   search: search,
                   perPage: perPage
                 })
                 .then((res: any) => {
 
-                    this.categories = res.result.data;
+                    this.categories = res.result;
             
                 }).catch((error) => {
                     
@@ -38,13 +36,13 @@ export const useHomeStore = defineStore("home", {
         },
         async getAllSubjects(search: String|null = null, perPage: Number|null = null){
           try {
-              await SubjectService.index({
+              await HomeService.subject({
                 search: search,
                 perPage: perPage
               })
               .then((res: any) => {
 
-                  this.subjects = res.result.data;
+                  this.subjects = res.result;
           
               }).catch((error) => {
                   
@@ -63,7 +61,7 @@ export const useHomeStore = defineStore("home", {
             subject: Number|null = null
           ){
           try {
-              await MaterialService.index({
+              await HomeService.material({
                 search: search,
                 perPage: perPage,
                 category: category,
@@ -71,7 +69,7 @@ export const useHomeStore = defineStore("home", {
               })
               .then((res: any) => {
 
-                  this.materials = res.result.data;
+                  this.materials = res.result;
           
               }).catch((error) => {
                   
