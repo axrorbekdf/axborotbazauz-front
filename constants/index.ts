@@ -1,5 +1,5 @@
-export const apiPoint = 'https://axborotbaza.uz/backend/public/api/';
-export const globalfilePath = 'https://axborotbaza.uz/backend/public/storage/';
+export const apiPoint = 'https://api.axborotbaza.uz/api/';
+export const globalfilePath = 'https://api.axborotbaza.uz/storage/';
 
 
 

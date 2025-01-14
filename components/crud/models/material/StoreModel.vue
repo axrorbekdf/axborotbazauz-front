@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { apiPoint } from '~/constants';
+import { getItem } from "~/helpers/persistaneStorage";
+
 const materialStore = useMaterialStore();
 const categoryStore = useCategoryStore();
 const subjectStore = useSubjectStore();
@@ -44,11 +47,11 @@ const uploadData = async () => {
   formData.append('subject_id', String(subject_id.value));
 
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/material/uploaded', {
+    const response = await fetch(apiPoint+'material/uploaded', {
       method: 'POST',
       body: formData,
       headers: {
-        Authorization: 'Bearer 2|tx80tbuh9qEM1PmRToFCQFfNCtGoUWVlFn8ZuLNn1f8b8b60',
+        Authorization: `Bearer ${getItem('token')}`,
       },
     });
 
