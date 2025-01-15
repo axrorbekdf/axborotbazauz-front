@@ -1,11 +1,12 @@
-export const apiPoint = 'https://api.axborotbaza.uz/api/';
-export const globalfilePath = 'https://api.axborotbaza.uz/storage/';
+export const globelBaseUrl = 'https://api.axborotbaza.uz';
+// export const localBaseUrl = 'http://127.0.0.1:8000';
+export const localBaseUrl = 'http://10.100.104.125:8888';
+
+export const apiPoint = localBaseUrl+'/api/';
+export const filePath = localBaseUrl+'/storage/';
 
 
 
-// export const localApiPoint = 'http://10.100.104.125:8888/api/';
-export const localApiPoint = 'http://127.0.0.1:8000/api/';
-export const localfilePath = 'http://127.0.0.1:8000/storage/';
 
 
 export const sidebarItems = [

@@ -15,6 +15,13 @@ const state = reactive({
   password: undefined
 })
 
+defineProps({
+    toggleLogin: {
+        type: Function,
+        required: true
+    },
+});
+
 const validate = (state: any): FormError[] => {
   const errors = []
   if (!state.phone) errors.push({ path: 'phone', message: "Telefon to'ldirilishi shart!" })
@@ -93,11 +100,15 @@ async function onSubmit (event: FormSubmitEvent<any>) {
       <UInput v-model="state.password" type="password" color="blue" size="lg"/>
     </UFormGroup>
 
+    <div class="text-sm text-neutral-500">
+        Hali roʻyxatdan oʻtmaganmisiz?
+        <span class="text-blue-500 hover:underline" role="button" @click="$props.toggleLogin">Ro'yxatdan o'tish</span>
+    </div>
 
     <UButton type="submit" color="blue" class="w-full" block size="lg" :disabled="isLoading">
       
       <template v-if="isLoading">
-        <Icon name="svg-spinners:3-dots-fade" class="w-5 h-5"/>
+        <Icon name="svg-spinners:8-dots-rotate" class="w-5 h-5"/>
       </template>
       <template v-else>Kirish</template>
 

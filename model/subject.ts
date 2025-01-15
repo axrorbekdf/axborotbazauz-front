@@ -24,16 +24,6 @@ export default class CrudSubject{
         hidden: false,
         value: (JSON.stringify(model) !== "{}") ? model['name'] : null
       },
-      category_id: {
-        type: String,
-        name: "Kategoriya",
-        rules: {
-          value: "required",
-          message: "To'ldirilishi shart!"
-        },
-        hidden: false,
-        value: (JSON.stringify(model) !== "{}") ? model['category_id'] : null
-      },
       count: {
         type: String,
         name: "Soni",
@@ -57,9 +47,6 @@ export default class CrudSubject{
     },{
       key: 'name',
       label: 'Nomi'
-    },{
-      key: 'category.name',
-      label: 'Kategoriya'
     }, 
     // {
     //   key: 'slug',

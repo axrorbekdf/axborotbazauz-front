@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { localfilePath, globalfilePath } from '~/constants';
+import { filePath } from '~/constants';
 
 
 const props = defineProps({
@@ -44,7 +44,7 @@ const scrollToPrev = () => {
                     :key="index"
                     :class="`flex-shrink-0 w-[calc(100%/${slidesToShow})] bg-gray-300 flex items-center justify-center rounded-lg h-64 mx-4 my-4`"
                 >
-                    <img :src="globalfilePath+slide?.previewPath" :alt="'Slide ' + (index + 1)" class="object-cover w-full h-full rounded-lg" />
+                    <img :src="filePath+slide?.previewPath" :alt="'Slide ' + (index + 1)" class="object-cover w-full h-full rounded-lg" />
                 </div>
             </div>
 

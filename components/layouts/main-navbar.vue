@@ -31,7 +31,7 @@ const logout = async () => {
     AuthService.logout()
     .then(() => {
         loadingStore.set(false);
-        router.push('auth/login')    
+        router.push('/auth/login')    
 
         toast.add({
             title: 'Tizimdan chiqildi!',
