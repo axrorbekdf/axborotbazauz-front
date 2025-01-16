@@ -4,7 +4,8 @@ const modelStore = useHomeStore();
 const loadingStore = useLoadingStore();  
 const route = useRoute()
 // const subjectSlug = route.params.subject_slug;
-const categorySlug = route.params.category_slug;
+const categorySlug = route.params.category_slug as string;
+const subjectSlug = route.params.subject_slug as string;
 
 const routeInfo = defineProps({
   route: {
@@ -16,6 +17,12 @@ const routeInfo = defineProps({
 
 watchEffect(() => {
   // modelStore.getAllCategories(search.value);
+});
+
+const search = ref(null)
+
+watch(search, (newValue, oldValue) => {
+    modelStore.getAllRecentMaterials(search.value, null, categorySlug, subjectSlug);
 });
 
 onMounted(async () => {
@@ -34,7 +41,7 @@ onMounted(async () => {
             <div class="container max-w-screen-xl mx-auto px-4">
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <div class="flex flex-wrap gap-4">
-                    <input type="text" placeholder="Nimalar qidirmoqchisiz?" class="flex-1 px-4 py-2 border border-purple-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600">
+                    <input v-model="search" type="text" placeholder="Nimalar qidirmoqchisiz?" class="flex-1 px-4 py-2 border border-purple-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 text-black">
                     <button class="w-full md:w-auto bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600">Qidirish</button>
                 </div>
                 <div class="flex flex-wrap gap-4 mt-6">
