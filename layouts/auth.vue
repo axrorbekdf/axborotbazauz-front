@@ -13,11 +13,14 @@ onMounted(() => {
         
         if(res.status){
             authStore.update({
-                id: res.resoult.$id,
+                id: res.result.$id,
                 name: res.result.name,
                 phone: res.result.phone,
                 password: "",
+                is_active: res.result.is_active,
+                role: res.result.role,
                 token: res.result.token,
+                obuna: res.result.obuna
             });
 
             loadingStore.set(false);

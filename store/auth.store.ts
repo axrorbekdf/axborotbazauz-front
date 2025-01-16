@@ -7,7 +7,10 @@ interface User {
     name: String,
     phone: String,
     password: String,
+    is_active: Boolean,
+    role: String,
     token: String,
+    obuna: Array<any>
 }
 
 const initialState: {user: User} = {
@@ -16,7 +19,10 @@ const initialState: {user: User} = {
         name: "",
         phone: "",
         password: "",
+        is_active: false,
+        role: "",
         token: "",
+        obuna: []
     }
 }
 

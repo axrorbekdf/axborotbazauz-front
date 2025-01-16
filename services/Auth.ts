@@ -10,6 +10,13 @@ import { useApiFetch } from "./FetchService";
         })
     },
 
+    register(user: object){
+        return useApiFetch()("user/register", {
+            method: "POST",
+            body: user
+        })
+    },
+
     getUser(){
         return useApiFetch()("auth/me", {
             method: "GET"

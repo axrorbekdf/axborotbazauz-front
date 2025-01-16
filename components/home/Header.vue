@@ -1,10 +1,19 @@
 <script setup lang="ts" >
 
 const isMenuOpen = ref(false);
-
+const authStore = useAuthStore();
 const toggleMenu = () => {
       isMenuOpen.value = !isMenuOpen.value;
 }
+
+const userInfo = ref({});
+
+const isCheckUser = computed(() => {
+  userInfo.value = authStore.currentUser;
+
+  return Object.keys(userInfo.value).length === 0;
+});
+
 </script>
 
 <template>
@@ -23,14 +32,24 @@ const toggleMenu = () => {
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex gap-6 text-lg">
           <NuxtLink to="/" class="hover:text-yellow-400">Bosh sahifa</NuxtLink>
-          <NuxtLink to="/about" class="hover:text-yellow-400">Biz haqimizda</NuxtLink>
+          <!-- <NuxtLink to="/about" class="hover:text-yellow-400">Biz haqimizda</NuxtLink> -->
           <NuxtLink to="/tarifs" class="hover:text-yellow-400">Tariflar</NuxtLink>
           <NuxtLink to="/principle" class="hover:text-yellow-400">Qoidalar</NuxtLink>
-          <NuxtLink to="/partners" class="hover:text-yellow-400">Reklama beruvchilar uchun</NuxtLink>
+          <!-- <NuxtLink to="/partners" class="hover:text-yellow-400">Reklama beruvchilar uchun</NuxtLink> -->
           <NuxtLink to="/contact" class="hover:text-yellow-400">Biz bilan aloqa</NuxtLink>
         </nav>
 
-        <NuxtLink to="/admin/dashboard" class="bg-white hidden md:flex text-purple-700 px-4 py-2 rounded-full shadow-md hover:bg-yellow-400">Kirish</NuxtLink>
+        <div v-if="!isCheckUser">
+            <NuxtLink to="/account" class="bg-white hidden md:flex text-purple-700 px-4 py-2 rounded-full shadow-md hover:bg-yellow-400 flex-row items-center">
+              <p>{{ authStore.currentUser.name }}</p>
+              <span>Active: 12-12-2025 - 14-12-2025</span>
+            </NuxtLink>
+        </div>
+        <div v-else>
+          <NuxtLink to="/auth/login" class="bg-white hidden md:flex text-purple-700 px-4 py-2 rounded-full shadow-md hover:bg-yellow-400 flex-row items-center">Kirish</NuxtLink>
+        </div>
+        
+        <NuxtLink to="/admin/dashboard" class="bg-white hidden md:flex text-purple-700 px-4 py-2 rounded-full shadow-md hover:bg-yellow-400">Kirish 1</NuxtLink>
       </div>
   
       <!-- Mobile Navigation -->
@@ -44,10 +63,10 @@ const toggleMenu = () => {
         </div>
         <nav class="flex flex-col gap-4 p-4 text-lg">
           <NuxtLink to="/" class="hover:text-yellow-400">Bosh sahifa</NuxtLink>
-          <NuxtLink to="/about" class="hover:text-yellow-400">Biz haqimizda</NuxtLink>
+          <!-- <NuxtLink to="/about" class="hover:text-yellow-400">Biz haqimizda</NuxtLink> -->
           <NuxtLink to="/tarifs" class="hover:text-yellow-400">Tariflar</NuxtLink>
           <NuxtLink to="/principle" class="hover:text-yellow-400">Qoidalar</NuxtLink>
-          <NuxtLink to="/partners" class="hover:text-yellow-400">Reklama beruvchilar uchun</NuxtLink>
+          <!-- <NuxtLink to="/partners" class="hover:text-yellow-400">Reklama beruvchilar uchun</NuxtLink> -->
           <NuxtLink to="/contact" class="hover:text-yellow-400">Biz bilan aloqa</NuxtLink>
         </nav>
       </div>

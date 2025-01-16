@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import type { Icon } from '#components';
 import type { FormError, FormSubmitEvent } from '#ui/types'
+import AuthService from '~/services/Auth';
 
 
+const router = useRouter();
+const toast = useToast();
 
 const props = defineProps({
     toggleLogin: {
@@ -11,14 +14,13 @@ const props = defineProps({
     },
 });
 
-const toast = useToast();
 
 const isLoading = ref(false);
 const errors = ref('');
 
 const state = reactive({
   name: undefined,
-  phone: undefined,
+  phone: '',
   password: undefined
 })
 
@@ -35,23 +37,34 @@ async function onSubmit (event: FormSubmitEvent<any>) {
   // Do something with data
   const {name, phone, password} = event.data;
   
-  try{
-    // await ACCOUNT.create(UNIQUE_ID, email, password, name);
-    // props.toggleLogin();
-    
-    // toast.add({
-    //   title: 'Account created',
-    //   description: "You can now login with your new account"
-    // })
+  AuthService.register({
+      name: name,
+      phone: phone,
+      password: password
+    })
+    .then((res: any) => {
 
-    isLoading.value = false;
-  } catch(e: any){
-    // console.log(e);
-    // errors.value = e.message;
-    // isLoading.value = false;
-  }
+      if(res.status){
+
+        isLoading.value = false;
+        props.toggleLogin()
+        
+        toast.add({
+          title: 'Tizimga kirishingiz mumkin.',
+          description: "Foydalanuvchi hisobingiz yaratildi!"
+        })
+        
+      }else{
+          errors.value = res.error.message;
+          isLoading.value = false;
+      }      
+      
+    })
+    .catch((err: any): any => {
+          errors.value = err.error.message;
+          isLoading.value = false;
+    });
   
-  // console.log(event.data)
 }
 
 
@@ -59,11 +72,8 @@ const confirmPassword = ref(""); // Parolni qayta kiritish
 const errorMessage = ref(""); // Xatolik haqida xabar
 const isDisabled = ref(true); // Tugmani boshqarish
 
-const validatePasswords = () => {
-    console.log(state.password);
-    console.log(confirmPassword.value);
-    
-    if (state.password === "" || confirmPassword.value === "") {
+watch(confirmPassword, (newValue, oldValue) => {
+  if (state.password === "" || confirmPassword.value === "") {
         errorMessage.value = "Parolni kiriting va tasdiqlang!";
         isDisabled.value = true;
     } else if (state.password !== confirmPassword.value) {
@@ -73,7 +83,13 @@ const validatePasswords = () => {
         errorMessage.value = "";
         isDisabled.value = false;
     }
-};
+});
+
+const isPhoneValid = computed(() => {
+  const phoneRegex = /^\+998[0-9]{9}$/; // O'zbekiston telefon raqamlari uchun: +998xxxxxxxxx
+  return phoneRegex.test(state.phone);
+});
+
 </script>
 
 <template>
@@ -92,14 +108,17 @@ const validatePasswords = () => {
     </UFormGroup>
 
     <UFormGroup label="Telefon nomeringiz *" name="phone">
-        <UInput v-model="state.phone" color="blue" size="lg" placeholder="998991234567" :leadingIcon="'+998'"/>
+        <UInput v-model="state.phone" color="blue" size="lg" placeholder="+998XXXXXXXXX" maxlength="13"/>
+        <span class="text-xs text-red-600" v-if="!isPhoneValid && state.phone.length > 0">
+          Telefon raqami +998XXXXXXXXX formatida bo‘lishi kerak.
+        </span>
     </UFormGroup>
 
     <UFormGroup label="Parol *" name="password">
       <UInput v-model="state.password" type="password" color="blue" size="lg" placeholder="6ta belgi kiriting..."/>
       <span class="text-xs text-red-600">Parol 6 ta belgidan kam bo'lmasligi kerak</span>
-      <UInput v-model="confirmPassword" type="password" color="blue" size="lg" placeholder="Parolni qaytadan kiriting..." @input="validatePasswords"/>
-      <div v-if="errorMessage" style="color: red;">{{ errorMessage }}</div>
+      <UInput v-model="confirmPassword" type="password" color="blue" size="lg" placeholder="Parolni qaytadan kiriting..."/>
+      <span class="text-xs text-red-600" v-if="errorMessage" >{{ errorMessage }}</span>
     </UFormGroup>
 
     
