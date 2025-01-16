@@ -15,6 +15,7 @@ const filter = defineProps({
   }
 });
 
+
 onMounted(async () => {
   await modelStore.getAllRecentMaterials(null, 10, filter.categorySlug, filter.subjectSlug)
   .finally(() => {
@@ -25,7 +26,7 @@ onMounted(async () => {
 
 <template>
     <section class="container max-w-screen-xl mx-auto py-12 px-4">
-        <h2 class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">So‘nggi qo‘shilganlar</h2>
+        <h2 class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">Natilar</h2>
         <div class="space-y-4">
             <!-- Single Item -->
             <div v-for="item in modelStore.getMaterials as Array<any>" :key="item" class="flex flex-wrap items-center gap-4 p-4 border border-purple-400 rounded-lg">

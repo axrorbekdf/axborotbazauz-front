@@ -57,15 +57,15 @@ export const useHomeStore = defineStore("home", {
         async getAllRecentMaterials(
             search: String|null = null, 
             perPage: Number|null = null, 
-            category: Number|null = null,
-            subject: Number|null = null
+            category: String|null = null,
+            subject: String|null = null
           ){
           try {
               await HomeService.material({
                 search: search,
                 perPage: perPage,
-                category: category,
-                subject: subject,
+                categorySlug: category,
+                subjectSlug: subject,
               })
               .then((res: any) => {
 

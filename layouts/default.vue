@@ -5,6 +5,10 @@ const router = useRouter();
 const authStore = useAuthStore();
 const loadingStore = useLoadingStore()
 
+useHead({
+    title: "Xush kelibsiz!"
+})
+
 onMounted(() => {
     loadingStore.set(true);
     

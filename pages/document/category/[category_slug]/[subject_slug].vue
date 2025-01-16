@@ -3,7 +3,7 @@ const route = useRoute()
 
 // When accessing /posts/1, route.params.id will be 1
 const categorySlug = route.params.category_slug as string;
-const subjectSlug = route.params.subject_slug;
+const subjectSlug = route.params.subject_slug as string;
 </script>
 <template>
     <!-- <div>
@@ -22,7 +22,7 @@ const subjectSlug = route.params.subject_slug;
     <HomeSubjects :route="'/document/category/'" :category-slug="categorySlug"/>
 
     <!-- Recent Items Section -->
-    <HomeRecentItems :category-id="categorySlug" :subject-id="subjectSlug"/>
+    <HomeSearchResultItems :category-slug="categorySlug" :subject-slug="subjectSlug"/>
 
     <!-- Footer Wave -->
     <HomeFooter />

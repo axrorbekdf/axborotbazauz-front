@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import AuthService from '~/services/Auth';
 
+useHead({
+    title: "Kirish (Ro'yxatdan o'tish)"
+})
+
 const router = useRouter();
 const authStore = useAuthStore();
 const loadingStore = useLoadingStore()

@@ -59,6 +59,9 @@ async function onSubmit (event: FormSubmitEvent<any>) {
           phone: res.result.phone,
           password: "",
           token: res.result.token,
+          is_active: res.result.is_active,
+          role: res.result.role,
+          obuna: res.result.obuna
         });
         
         router.push('/');

@@ -26,7 +26,7 @@ export default class CrudSubscription{
       },
       period: {
         type: Array<String>,
-        name: "Amal qilish oralig'i",
+        name: "Amal qilish muddati",
         rules: {
           value: "required",
           message: "To'ldirilishi shart!"

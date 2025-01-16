@@ -44,6 +44,7 @@ export default class CrudHistorySubscription{
         hidden: false,
         value: (JSON.stringify(model) !== "{}") ? model['payment_id'] : null
       },
+      /*
       start_date: {
         type: String,
         name: "Boshlanish kuni",
@@ -63,7 +64,7 @@ export default class CrudHistorySubscription{
         },
         hidden: false,
         value: (JSON.stringify(model) !== "{}") ? model['end_date'] : null
-      },
+      },*/
     };
   }
 
