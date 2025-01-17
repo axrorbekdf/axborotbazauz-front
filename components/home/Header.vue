@@ -1,4 +1,4 @@
-<script setup lang="ts" >
+<script setup lang="ts">
 import AuthService from '~/services/Auth';
 
 const router = useRouter();

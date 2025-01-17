@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { filePath } from '~/constants';
+
 const modelStore = useHomeStore();
 const loadingStore = useLoadingStore();
 
