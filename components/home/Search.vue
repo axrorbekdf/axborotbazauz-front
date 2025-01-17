@@ -15,9 +15,6 @@ const routeInfo = defineProps({
   }
 });
 
-watchEffect(() => {
-  // modelStore.getAllCategories(search.value);
-});
 
 const search = ref(null)
 
