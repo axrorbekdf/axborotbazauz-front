@@ -7,11 +7,13 @@ export const useHomeStore = defineStore("home", {
         categories: [],
         subjects: [],
         materials: [],
+        material: {} as any,
     }),
     getters: {
         getCategories: state => state.categories,
         getSubjects: state => state.subjects,
-        getMaterials: state => state.materials
+        getMaterials: state => state.materials,
+        getMaterial: state => state.material
     },
     actions: {
         async getAllCategories(search: String|null = null, perPage: Number|null = null){
@@ -80,6 +82,26 @@ export const useHomeStore = defineStore("home", {
                 console.error('Failed to load posts:', error);
       
             }
-        }
+        },
+
+        async getOneMaterial(
+          slug: String = ''
+        ){
+        try {
+            await HomeService.oneMaterial(slug)
+            .then((res: any) => {
+
+                this.material = res.result;
+        
+            }).catch((error) => {
+                
+              console.error('Failed to load posts:', error);
+            });
+        
+          } catch (error) {
+              console.error('Failed to load posts:', error);
+    
+          }
+      }
     },
 });

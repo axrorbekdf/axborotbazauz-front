@@ -23,6 +23,12 @@ import { useApiFetch } from "./FetchService";
             params: (params)
         })
     },
+
+    oneMaterial(slug: String){
+        return useApiFetch()("v1/material/show/"+slug, {
+            method: "GET"
+        })
+    },
 }
 
 export default HomeService;
