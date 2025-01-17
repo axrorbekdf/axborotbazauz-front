@@ -14,7 +14,7 @@ const material = defineProps({
 <template>
     
     <!-- Document content -->
-    <div class="max-h-screen bg-gray-100 flex justify-center items-center py-5">
+    <div class="max-h-screen bg-gray-600 flex justify-center items-center py-5">
         <div class="w-full max-w-4xl h-[80vh] bg-white shadow-md rounded overflow-y-scroll border">
             <div
                 v-for="page in material.pages as Array<any>"
