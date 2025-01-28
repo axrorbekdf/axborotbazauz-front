@@ -3,8 +3,8 @@ export const globelBaseUrl1 = 'https://axborotbazaapi.uz';
 // export const localBaseUrl = 'http://127.0.0.1:8000';
 export const localBaseUrl = 'http://10.100.104.125:8888';
 
-export const apiPoint = globelBaseUrl1+'/api/';
-export const filePath = globelBaseUrl1+'/storage/';
+export const apiPoint = localBaseUrl+'/api/';
+export const filePath = localBaseUrl+'/storage/';
 
 
 

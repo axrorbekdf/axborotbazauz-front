@@ -7,6 +7,7 @@ export const useApiFetch = () => {
       baseURL: apiPoint,
       headers: {
         Authorization: `Bearer ${getItem('token')}`,
+        'Content-Type': 'application/json',
       },
     });
 
