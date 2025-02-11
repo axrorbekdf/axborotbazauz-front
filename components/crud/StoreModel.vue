@@ -49,7 +49,7 @@ const props = defineProps({
         </template>
 
         <div v-if="props.modelType == 'material'">
-          <CrudModelsMaterialStoreModel :model="model"/>
+          <CrudModelsMaterialStoreModel :model="model" :toggleShow="toggleShow"/>
         </div>
 
         <div v-else-if="props.modelType == 'history'">

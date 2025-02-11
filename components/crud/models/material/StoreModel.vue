@@ -12,10 +12,16 @@ const props = defineProps({
         default: {},
         required: true
     },
+    toggleShow: {
+        type: Function,
+        required: true
+    },
 })
 
 // Slider data
 const pages = ref([]);
+const isLoading = ref(false);
+const errorMessage = ref('');
 const categories = ref([]);
 const subjects = ref([]);
 
@@ -36,6 +42,8 @@ const selectedFile = ref<File | null>(null);
 
 
 const uploadData = async () => {
+
+  isLoading.value = true;
   const formData = new FormData();
   if (selectedFile.value) {
     formData.append('file', selectedFile.value); // 'file' — backendda kutilayotgan nom
@@ -53,11 +61,20 @@ const uploadData = async () => {
       headers: {
         Authorization: `Bearer ${getItem('token')}`,
       },
+    })
+    .finally(() => {
+      isLoading.value = false
     });
 
     const result = await response.json();
-    pages.value = result.result.pages;
     console.log(result);
+    
+    if(result.status)
+      pages.value = result.result.pages;
+    else
+      errorMessage.value = result.error.message
+
+    // props.toggleShow();
   } catch (error) {
     console.error('Xatolik yuz berdi:', error);
   }
@@ -76,80 +93,97 @@ const onFileChange = (event: Event) => {
  
 <template>
 
+  
     <!-- Container -->
-  <div class="max-w-4xl mx-auto">
-    <!-- Top Section -->
-    <div class="flex flex-col gap-4 mb-6">
+    <div class="max-w-4xl mx-auto">
+      <!-- Top Section -->
+      <div class="flex flex-col gap-4 mb-6">
 
-      <div class="flex gap-4 my-2">
-        <div class="h-6 w-1/2">
-          <input type="file" @change="onFileChange($event)" />
-        </div>
-        <div class="h-8 w-1/2 flex justify-end items-end">
-          <!-- <button class="bg-slate-700 text-white rounded-sm p-2" @click="uploadData" :disabled="!selectedFile">Yuklash1</button> -->
-          <UButton
-            icon="i-heroicons-pencil-square"
-            size="lg"
-            color="primary"
-            variant="solid"
-            label="Yuklash"
-            :trailing="false"
-            @click="uploadData" 
-            :disabled="!selectedFile"
-          />
-        </div>
-      </div>
-      <!-- Long Rectangle -->
-      <div class="h-6 rounded my-2">
-        <UInput v-model="title" size="lg" />
-      </div>
-
-      <!-- Two Smaller Rectangles -->
-      <div class="flex gap-4 my-2">
-        <div class="h-6 w-1/2">
-            <USelectMenu
-                v-model="category_id"
-                searchable
-                searchable-placeholder="Kategoriyani qidirish"
-                class="w-full"
-                placeholder="Select a person"
-                :options="categories" 
-                value-attribute="id"
-                option-attribute="name"
-                size="lg"
+        <div class="flex gap-4 my-2">
+          <div class="h-6 w-1/2">
+            <input type="file" @change="onFileChange($event)" />
+          </div>
+          <div class="h-8 w-1/2 flex justify-end items-end">
+            <!-- <button class="bg-slate-700 text-white rounded-sm p-2" @click="uploadData" :disabled="!selectedFile">Yuklash1</button> -->
+            <UButton
+              icon="i-heroicons-pencil-square"
+              size="lg"
+              color="primary"
+              variant="solid"
+              label="Yuklash"
+              :trailing="false"
+              @click="uploadData" 
+              :disabled="!selectedFile"
             />
+          </div>
         </div>
-        <div class="h-6 w-1/2">
-            <USelectMenu
-                v-model="subject_id"
-                searchable
-                searchable-placeholder="Fanni qidirish"
-                class="w-full"
-                placeholder="Select a person"
-                :options="subjects"
-                value-attribute="id"
-                option-attribute="name"
-                size="lg"
-            />
+        <!-- Long Rectangle -->
+        <div class="h-6 rounded my-2">
+          <UInput v-model="title" size="lg" />
         </div>
+
+        <!-- Two Smaller Rectangles -->
+        <div class="flex gap-4 my-2">
+          <div class="h-6 w-1/2">
+              <USelectMenu
+                  v-model="category_id"
+                  searchable
+                  searchable-placeholder="Kategoriyani qidirish"
+                  class="w-full"
+                  placeholder="Select a person"
+                  :options="categories" 
+                  value-attribute="id"
+                  option-attribute="name"
+                  size="lg"
+              />
+          </div>
+          <div class="h-6 w-1/2">
+              <USelectMenu
+                  v-model="subject_id"
+                  searchable
+                  searchable-placeholder="Fanni qidirish"
+                  class="w-full"
+                  placeholder="Select a person"
+                  :options="subjects"
+                  value-attribute="id"
+                  option-attribute="name"
+                  size="lg"
+              />
+          </div>
+        </div>
+
+        <!-- Center Rectangle
+        <div class="h-6 w-1/3 mx-auto bg-gray-300 rounded">
+
+          
+          
+        </div> -->
       </div>
 
-      <!-- Center Rectangle
-      <div class="h-6 w-1/3 mx-auto bg-gray-300 rounded">
+      <!-- Divider -->
+      <hr class="border-gray-400 mb-6">
 
-        
-        
-      </div> -->
+      <!-- Bottom Section -->
+      <div class="grid grid-cols-1 gap-1">
+          
+          <h1 v-if="isLoading">Yuklanmoqda</h1>
+          <template v-else>
+            <div>
+              <h2>Xatoliklar roʻyxati:</h2>
+              <!-- <ul>
+                <li v-for="(values, key) in errorMessage" :key="key">
+                  <strong>{{ key }}:</strong>
+                  <ul>
+                    <li v-for="(value, index) in values" :key="index">{{ value }}</li>
+                  </ul>
+                </li>
+              </ul> -->
+              <div v-for="(values, key) in errorMessage" :key="key">
+                <strong>{{ key }}:</strong> {{ values.join(", ") }}
+              </div>
+            </div>
+            <UiSlider :pages="pages"/>
+          </template>
+      </div>
     </div>
-
-    <!-- Divider -->
-    <hr class="border-gray-400 mb-6">
-
-    <!-- Bottom Section -->
-    <div class="grid grid-cols-1 gap-1">
-
-          <UiSlider :pages="pages"/>
-
-    </div>
-  </div>
 </template>
