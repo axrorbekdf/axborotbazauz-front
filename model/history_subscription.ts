@@ -21,8 +21,22 @@ export default class CrudHistorySubscription{
           value: "required",
           message: "To'ldirilishi shart!"
         },
-        hidden: false,
+        hidden: true,
         value: (JSON.stringify(model) !== "{}") ? model['user_id'] : null
+      },
+      user: {
+        type: String,
+        name: "Foydalanuvchi",
+        rules: {
+          // value: "required",
+          // message: "To'ldirilishi shart!"
+        },
+        hidden: false,
+        relation: {
+          name: "name",
+          status: true
+        },
+        value: (JSON.stringify(model) !== "{}") ? model['user'] : null
       },
       subscription_id: {
         type: String,
@@ -31,8 +45,22 @@ export default class CrudHistorySubscription{
           value: "required",
           message: "To'ldirilishi shart!"
         },
-        hidden: false,
+        hidden: true,
         value: (JSON.stringify(model) !== "{}") ? model['subscription_id'] : null
+      },
+      subscription: {
+        type: String,
+        name: "Obuna",
+        rules: {
+          // value: "required",
+          // message: "To'ldirilishi shart!"
+        },
+        hidden: false,
+        relation: {
+          name: "name",
+          status: true
+        },
+        value: (JSON.stringify(model) !== "{}") ? model['subscription'] : null
       },
       payment_id: {
         type: String,
@@ -41,8 +69,22 @@ export default class CrudHistorySubscription{
           value: "required",
           message: "To'ldirilishi shart!"
         },
-        hidden: false,
+        hidden: true,
         value: (JSON.stringify(model) !== "{}") ? model['payment_id'] : null
+      },
+      payment: {
+        type: String,
+        name: "To'lov tizimi",
+        rules: {
+          // value: "required",
+          // message: "To'ldirilishi shart!"
+        },
+        hidden: false,
+        relation: {
+          name: "name",
+          status: true
+        },
+        value: (JSON.stringify(model) !== "{}") ? model['payment'] : null
       },
       /*
       start_date: {
@@ -82,7 +124,7 @@ export default class CrudHistorySubscription{
       key: 'subscription.name',
       label: 'Obuna'
     }, {
-      key: 'payment_id',
+      key: 'payment.name',
       label: 'To\'lov tizimi'
     }, {
       key: 'start_date',

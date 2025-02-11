@@ -134,7 +134,7 @@ function modalDelete(row: any){
       <div>
         <CrudViewModel :is-open="isOpenView" :toggle-show-close="modalShowViewClose" :model="model.modelCrud.getFormFields(model.modelStore.oneModel)" :model-type="model.modelType"/>
         <CrudStoreModel :is-open="isOpenStore" :toggle-show="modalShowStore" :model="model.modelCrud.getFormFields()" :create-model="modalStore" :model-type="model.modelType"/>
-        <CrudUpdateModel :is-open="isOpenUpdate" :toggle-show="modalShowUpdate" :model="model.modelCrud.getFormFields(model.modelStore.oneModel)" :update-model="modalUpdate"/>
+        <CrudUpdateModel :is-open="isOpenUpdate" :toggle-show="modalShowUpdate" :model="model.modelCrud.getFormFields(model.modelStore.oneModel)" :update-model="modalUpdate" :model-type="model.modelType"/>
 
 
         <div class="flex px-3 py-3.5 border-b border-gray-200 dark:border-gray-700 items-center justify-between">

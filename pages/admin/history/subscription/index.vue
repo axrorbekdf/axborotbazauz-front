@@ -13,6 +13,6 @@ const modelCrud = new CrudHistorySubscription();
 </script>
  
 <template> 
-    <CrudDataTableModel :model-store="modelStore" :model-crud="modelCrud"/>
+    <CrudDataTableModel :model-type="'history'" :model-store="modelStore" :model-crud="modelCrud"/>
 </template>
 

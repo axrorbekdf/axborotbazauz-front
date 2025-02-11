@@ -29,16 +29,6 @@ const props = defineProps({
           
         </tbody>
       </table>
-
-      <!-- Divider -->
-      <hr class="border-gray-400 mb-6">
-
-      <!-- Bottom Section -->
-      <div class="grid grid-cols-1 gap-1">
-
-          <UiSlider :pages="props.model.pages.value"/>
-              
-      </div>
     
   </div>
 </template>

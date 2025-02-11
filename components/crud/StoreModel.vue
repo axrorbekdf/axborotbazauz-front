@@ -52,6 +52,10 @@ const props = defineProps({
           <CrudModelsMaterialStoreModel :model="model"/>
         </div>
 
+        <div v-else-if="props.modelType == 'history'">
+          <CrudModelsHistorySubscriptionStoreModel :model="model" :entity-handler="createModel"/>
+        </div>
+
         <CrudFormModel v-else :model="model"  :entity-handler="createModel" :toggleShow="toggleShow"/>
         
       </UCard>

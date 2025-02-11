@@ -31,8 +31,22 @@ export default class CrudMaterial{
           value: "required",
           message: "To'ldirilishi shart!"
         },
-        hidden: false,
+        hidden: true,
         value: (JSON.stringify(model) !== "{}") ? model['category_id'] : null
+      },
+      category: {
+        type: String,
+        name: "Kategoriya",
+        rules: {
+          value: "required",
+          message: "To'ldirilishi shart!"
+        },
+        hidden: false,
+        relation: {
+          name: "name",
+          status: true
+        },
+        value: (JSON.stringify(model) !== "{}") ? model['category'] : null
       },
       subject_id: {
         type: String,
@@ -41,7 +55,7 @@ export default class CrudMaterial{
           value: "required",
           message: "To'ldirilishi shart!"
         },
-        hidden: false,
+        hidden: true,
         value: (JSON.stringify(model) !== "{}") ? model['subject_id'] : null
       },
       subject: {

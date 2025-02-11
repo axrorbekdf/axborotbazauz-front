@@ -17,7 +17,11 @@ const props = defineProps({
     updateModel:{
         type: Function,
         required: true
-    }
+    },
+    modelType: {
+      type: String,
+      default: "",
+    },
 })
 
 </script>
@@ -44,7 +48,15 @@ const props = defineProps({
           </div>
         </template>
 
-        <CrudFormModel :model="model"  :entity-handler="updateModel" :toggleShow="toggleShow"/>
+        <div v-if="props.modelType == 'material'">
+          <!-- <CrudModelsMaterialStoreModel :model="model"/> -->
+        </div>
+
+        <div v-else-if="props.modelType == 'history'">
+          <CrudModelsHistorySubscriptionUpdateModel :model="model" :entity-handler="updateModel"/>
+        </div>
+
+        <CrudFormModel v-else :model="model"  :entity-handler="updateModel" :toggleShow="toggleShow"/>
       </UCard>
     </UModal>
   </div>

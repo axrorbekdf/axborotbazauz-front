@@ -52,6 +52,7 @@ const props = defineProps({
               </template>
 
               <CrudModelsMaterialViewModel v-if="props.modelType == 'material'" :model="props.model"/>
+              <CrudModelsHistorySubscriptionViewModel v-if="props.modelType == 'history'" :model="props.model"/>
 
               <table v-else class="w-full table-auto border-collapse border border-gray-200">
                 <thead class="bg-gray-200">
