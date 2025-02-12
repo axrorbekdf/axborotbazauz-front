@@ -29,6 +29,12 @@ import { useApiFetch } from "./FetchService";
             method: "GET"
         })
     },
+
+    downloadMaterial(slug: String){
+        return useApiFetch()("download/material/"+slug, {
+            method: "GET"
+        })
+    },
 }
 
 export default HomeService;

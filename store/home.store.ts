@@ -102,6 +102,26 @@ export const useHomeStore = defineStore("home", {
               console.error('Failed to load posts:', error);
     
           }
-      }
+        },
+
+        async getDownloadMaterial(
+          slug: String = ''
+        ){
+        try {
+            await HomeService.downloadMaterial(slug)
+            .then((res: any) => {
+
+                this.material = res.result;
+        
+            }).catch((error) => {
+                
+              console.error('Failed to load posts:', error);
+            });
+        
+          } catch (error) {
+              console.error('Failed to load posts:', error);
+    
+          }
+        }
     },
 });
