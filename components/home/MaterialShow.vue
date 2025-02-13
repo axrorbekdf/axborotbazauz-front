@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { apiPoint } from '~/constants';
+
 
 const modelStore = useHomeStore();
 const loadingStore = useLoadingStore();
@@ -24,6 +26,15 @@ onMounted(async () => {
     }); 
 });
 
+const download = async () => {
+  try {
+    await modelStore.getDownloadMaterial(filter.materialSlug);
+    
+  } catch (error) {
+    console.error('Xatolik yuz berdi:', error);
+  }
+};
+
 </script>
 
 <template>
@@ -47,7 +58,7 @@ onMounted(async () => {
                             <span>Hajmi: <strong>{{ modelStore.material?.size }}</strong></span>
                         </div>
                         <div class="flex items-center space-x-2">
-                            <button v-if="obuna">Yuklash</button>
+                            <NuxtLink :to="apiPoint+'v1/download/material/'+modelStore.material.slug"  v-if="obuna" class=" bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Yuklash</NuxtLink>
                             <NuxtLink v-else to="/principle" class=" bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Koʼchirib olish shartlari</NuxtLink>
                         </div>
                     </div>

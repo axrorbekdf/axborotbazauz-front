@@ -31,7 +31,7 @@ import { useApiFetch } from "./FetchService";
     },
 
     downloadMaterial(slug: String){
-        return useApiFetch()("download/material/"+slug, {
+        return useApiFetch()("v1/download/material/"+slug, {
             method: "GET"
         })
     },
