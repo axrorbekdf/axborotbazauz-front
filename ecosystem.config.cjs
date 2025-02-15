@@ -2,12 +2,12 @@ module.exports = {
   apps: [
     {
       name: "nuxt-app",
-      script: ".output/server/index.mjs",
+      script: "node",
+      args: ".output/server/index.mjs",
       env: {
-        PORT: 3000, // Nuxt serveri shu portda ishlaydi
+        PORT: 3000,
         NODE_ENV: "production"
       }
     }
   ]
 };
-  
