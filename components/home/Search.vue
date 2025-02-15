@@ -50,7 +50,7 @@ onMounted(async () => {
                       :to="routeInfo.route+item?.slug" 
                       v-for="(item) in modelStore.getCategories as Array<any>" 
                       :key="item" 
-                      class="px-4 py-2 rounded-full shadow"
+                      class="px-3 py-2 text-sm rounded-full shadow"
                     >
                       {{ item.name }} 
                       <span v-if="item.count > 0"> {{ item.count }} </span>

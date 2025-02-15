@@ -38,13 +38,22 @@ const download = async () => {
 </script>
 
 <template>
-    <h1 v-if="isLoading">Yuklanmoqda</h1>
+    <template v-if="isLoading">
+        <section class="container max-w-screen-xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-1 gap-6 p-6 rounded-lg">
+                <div class="bg-white shadow p-6 rounded-md mb-6">
+                    <h1 class="text-xl font-bold text-gray-800 break-words">Yuklanmoqda</h1>
+                </div>
+                
+            </div>
+        </section>
+    </template>
     <template v-else>
         <section class="container max-w-screen-xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-1 gap-6 p-6 rounded-lg">
                 <div class="bg-white shadow p-6 rounded-md mb-6">
-                    <h1 class="text-xl font-bold text-gray-800">{{ modelStore.material.title }}</h1>
-                    <div class="flex items-center justify-between mt-4 text-gray-600">
+                    <h1 class="text-xl font-bold text-gray-800 break-words">{{ modelStore.material.title }}</h1>
+                    <div class="mt-4 text-gray-600 space-y-3 sm:space-y-0 sm:flex sm:flex-wrap sm:justify-between">
                         <div class="flex items-center space-x-2">
                             <span>📅</span>
                             <span>Yuklangan vaqt: <strong>{{ modelStore.material?.date }}</strong></span>
@@ -57,12 +66,13 @@ const download = async () => {
                             <span>📂</span>
                             <span>Hajmi: <strong>{{ modelStore.material?.size }}</strong></span>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <NuxtLink :to="apiPoint+'v1/download/material/'+modelStore.material.slug"  v-if="obuna" class=" bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Yuklash</NuxtLink>
-                            <NuxtLink v-else to="/principle" class=" bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Koʼchirib olish shartlari</NuxtLink>
+                        <div class="w-full sm:w-auto flex justify-center sm:justify-end mt-0 sm:mt-4 md:mt-4">
+                            <NuxtLink :to="apiPoint+'v1/download/material/'+modelStore.material.slug" v-if="obuna" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-center w-full sm:w-auto">Yuklash</NuxtLink>
+                            <NuxtLink v-else to="/principle" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-center w-full sm:w-auto">Koʼchirib olish shartlari</NuxtLink>
                         </div>
                     </div>
                 </div>
+
 
                 <!-- Document content -->
                 <UiDocumentShow v-if="modelStore.material.type != 'pptx'" :pages="modelStore.material.pages"/>

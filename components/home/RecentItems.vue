@@ -35,7 +35,7 @@ onMounted(async () => {
                   <h3 class="font-bold text-sm md:text-base">{{ item?.title }}</h3>
                   <p class="text-xs md:text-sm text-purple-600" style="color: #0DDDEA">{{ item?.category_name }} / {{ item?.subject_name }}</p>
                 </div>
-                <button class="bg-red-500 text-white px-4 py-1 rounded-full text-xs md:text-sm" style="background-color: #0DDDEA">{{ item?.days_difference }} kun oldin</button>
+                <button class="bg-red-500 text-white px-4 py-1 rounded-full text-xs md:text-sm" style="background-color: #0DDDEA">{{ item?.days_difference+1 }} kun oldin</button>
             </NuxtLink>
             <!-- Duplicate or dynamically add items -->
         </div>
