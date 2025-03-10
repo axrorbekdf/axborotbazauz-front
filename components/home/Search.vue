@@ -18,6 +18,12 @@ const routeInfo = defineProps({
 
 const search = ref(null)
 
+// Qidirish funksiyasi (watch va button uchun)
+const getRecentMaterials = () => {
+    modelStore.getAllRecentMaterials(search.value, null, categorySlug, subjectSlug);
+};
+
+// `search` o'zgarishi bilan avtomatik chaqiriladi
 watch(search, (newValue, oldValue) => {
     modelStore.getAllRecentMaterials(search.value, null, categorySlug, subjectSlug);
 });
@@ -39,7 +45,7 @@ onMounted(async () => {
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <div class="flex flex-wrap gap-4">
                     <input v-model="search" type="text" placeholder="Nimalar qidirmoqchisiz?" class="flex-1 px-4 py-2 border border-purple-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 text-black">
-                    <button class="w-full md:w-auto bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600">Qidirish</button>
+                    <button @click="getRecentMaterials" class="w-full md:w-auto bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600">Qidirish</button>
                 </div>
                 <div class="flex flex-wrap gap-4 mt-6">
                     <!-- <NuxtLink to="/category" class="px-4 py-2 bg-purple-500 text-white rounded-full shadow hover:bg-purple-600">Kategoriya</NuxtLink> -->

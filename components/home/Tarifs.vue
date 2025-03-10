@@ -34,17 +34,6 @@
                 </ul>
             </div>
             
-            <h2 class="text-xl font-semibold text-gray-700 mt-4">5. Maxfiylik siyosati</h2>
-            <ul class="list-disc list-inside text-gray-600">
-                <li>Foydalanuvchilarning shaxsiy ma’lumotlari himoyalangan va uchinchi shaxslarga berilmaydi.</li>
-                <li>Platforma xavfsiz to‘lov tizimlaridan foydalanadi va ma’lumotlar shifrlangan holda uzatiladi.</li>
-            </ul>
-            
-            <h2 class="text-xl font-semibold text-gray-700 mt-4">6. Qo‘shimcha ma’lumotlar</h2>
-            <ul class="list-disc list-inside text-gray-600">
-                <li>Agar sizda savollar yoki tushunmovchiliklar bo‘lsa, Biz bilan aloqa bo‘limi orqali bizga murojaat qilishingiz mumkin.</li>
-                <li>Saytning ishlash qoidalari va shartlariga o‘zgartirish kiritish huquqini ma’muriyat o‘zida saqlab qoladi.</li>
-            </ul>
         </div>
     </section>
 </template>

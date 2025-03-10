@@ -71,7 +71,7 @@ export const useHomeStore = defineStore("home", {
               })
               .then((res: any) => {
 
-                  this.materials = res.result;
+                  this.materials = res.result.data;
           
               }).catch((error) => {
                   

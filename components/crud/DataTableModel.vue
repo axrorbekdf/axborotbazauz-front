@@ -21,9 +21,13 @@ const model = defineProps({
 
 // Belgilanganlar qatori
 const data = ref([]);
+const page = ref(1)
+const pageCount = ref(10)
 
 onMounted(async () => {
-  await model.modelStore.getAllModel(null);
+  console.log(pageCount.value);
+  
+  await model.modelStore.getAllModel(null, page.value, pageCount.value);
 });
 
 
@@ -74,14 +78,13 @@ const select = (row:any):any => {
 }
 
 watchEffect(() => {
-  model.modelStore.getAllModel(search.value);
+  model.modelStore.getAllModel(search.value, page.value, pageCount.value);
 });
 
-const page = ref(1)
-const pageCount = 10
 
 const paginateRows = computed(() => {
-  return model.modelStore.getModels.slice((page.value - 1) * pageCount, (page.value) * pageCount)
+  // return model.modelStore.getModels.slice((page.value - 1) * pageCount, (page.value) * pageCount)
+  // return model.modelStore.getModels
 })
 
 const isOpenView = ref(false);
@@ -151,7 +154,7 @@ function modalDelete(row: any){
 
 
 
-        <UTable v-model="selected" :rows="paginateRows" :columns="model.modelCrud.getColumns()" @select="select">
+        <UTable v-model="selected" :rows="model.modelStore.getModels" :columns="model.modelCrud.getColumns()" @select="select">
           <template #name-data="{ row }">
             <span :class="[selected.find((person:any) => person.id === row.id) && 'text-primary-500 dark:text-primary-400']">{{ row.name }}</span>
           </template>
@@ -164,7 +167,7 @@ function modalDelete(row: any){
         </UTable>
 
         <div class="flex justify-end px-3 py-3.5 border-t border-gray-200 dark:border-gray-700">
-            <UPagination v-model="page" :page-count="pageCount" :total="model.modelStore.getModels.length" />
+            <UPagination v-model="page" :page-count="pageCount" :total="model.modelStore?.getMeta.total" />
         </div>
       </div>
   </template>
