@@ -20,7 +20,7 @@ const search = ref(null)
 
 // Qidirish funksiyasi (watch va button uchun)
 const getRecentMaterials = () => {
-    modelStore.getAllRecentMaterials(search.value, null, categorySlug, subjectSlug);
+    modelStore.getAllRecentMaterials(search.value, 10, categorySlug, subjectSlug);
 };
 
 // `search` o'zgarishi bilan avtomatik chaqiriladi
