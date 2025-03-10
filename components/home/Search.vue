@@ -24,9 +24,9 @@ const getRecentMaterials = () => {
 };
 
 // `search` o'zgarishi bilan avtomatik chaqiriladi
-watch(search, (newValue, oldValue) => {
-    modelStore.getAllRecentMaterials(search.value, null, categorySlug, subjectSlug);
-});
+// watch(search, (newValue, oldValue) => {
+//     modelStore.getAllRecentMaterials(search.value, null, categorySlug, subjectSlug);
+// });
 
 onMounted(async () => {
   await modelStore.getAllCategories()
