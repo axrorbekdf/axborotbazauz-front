@@ -15,10 +15,13 @@ const filter = defineProps({
   }
 });
 
+const isLoading = ref(false);
 
 onMounted(async () => {
+  isLoading.value = true;
   await modelStore.getAllRecentMaterials(null, 10, filter.categorySlug, filter.subjectSlug)
   .finally(() => {
+    loadingStore.set(false);
     loadingStore.set(false);
   }); 
 });
@@ -26,7 +29,8 @@ onMounted(async () => {
 
 <template>
     <section class="container max-w-screen-xl mx-auto py-12 px-4">
-        <h2 class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">Qidirish natijalari</h2>
+        <h2 v-if="isLoading" class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">Qidirilmoqda...!</h2>
+        <h2 v-else class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">Qidirish natijalari</h2>
         <div class="space-y-4">
             <!-- Single Item -->
             <NuxtLink :to="'/document/material/'+item.slug" v-for="item in modelStore.getMaterials as Array<any>" :key="item" class="flex flex-wrap items-center gap-4 p-4 border border-purple-400 rounded-lg">
