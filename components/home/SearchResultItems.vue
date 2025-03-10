@@ -21,7 +21,7 @@ onMounted(async () => {
   isLoading.value = true;
   await modelStore.getAllRecentMaterials(null, 10, filter.categorySlug, filter.subjectSlug)
   .finally(() => {
-    loadingStore.set(false);
+    isLoading.value = false;
     loadingStore.set(false);
   }); 
 });
