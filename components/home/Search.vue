@@ -44,6 +44,9 @@ const getRecentMaterials = async () => {
     }
 };
 
+const all_count = computed(() =>
+  (modelStore.getCategories as Array<any>).reduce((total, item) => total + (item?.count || 0), 0)
+)
 
 onMounted(async () => {
   await modelStore.getAllCategories()
@@ -66,7 +69,7 @@ onMounted(async () => {
                 </div>
                 <div class="flex flex-wrap gap-4 mt-6">
                     <!-- <NuxtLink to="/category" class="px-4 py-2 bg-purple-500 text-white rounded-full shadow hover:bg-purple-600">Kategoriya</NuxtLink> -->
-                    <NuxtLink to="/" class="px-4 py-2 rounded-full shadow bg-purple-500 text-white hover:bg-purple-600">Barchasi 450</NuxtLink>
+                    <NuxtLink to="/" class="px-4 py-2 rounded-full shadow bg-purple-500 text-white hover:bg-purple-600">Barchasi {{all_count}}</NuxtLink>
 
                     <NuxtLink
                       :class="categorySlug === item?.slug ? 'bg-purple-500 text-white hover:bg-purple-600':'bg-gray-200 text-purple-700 hover:bg-purple-300'"
