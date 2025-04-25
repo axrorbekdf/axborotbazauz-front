@@ -67,7 +67,8 @@ const download = async () => {
                             <span>Hajmi: <strong>{{ modelStore.material?.size }}</strong></span>
                         </div>
                         <div class="w-full sm:w-auto flex justify-center sm:justify-end mt-0 sm:mt-4 md:mt-4">
-                            <NuxtLink :to="apiPoint+'v1/download/material/'+modelStore.material.slug" v-if="obuna" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-center w-full sm:w-auto">Yuklash</NuxtLink>
+                            <NuxtLink :to="apiPoint+'v1/download/material/'+modelStore.material.slug" v-if="true" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-center w-full sm:w-auto">Yuklash</NuxtLink>
+                            <!-- <NuxtLink :to="apiPoint+'v1/download/material/'+modelStore.material.slug" v-if="obuna" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-center w-full sm:w-auto">Yuklash</NuxtLink> -->
                             <NuxtLink v-else to="/principle" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-center w-full sm:w-auto">Koʼchirib olish shartlari</NuxtLink>
                         </div>
                     </div>
