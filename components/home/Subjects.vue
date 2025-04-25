@@ -27,37 +27,31 @@ onMounted(async () => {
 <template>
     <UiLoader v-if="loadingStore.isLoading" />
     <template v-else>
-        <section class="container max-w-screen-xl mx-auto py-12 px-4">
+        <section class="container max-w-screen-xl mx-auto py-12 px-4 hidden md:block">
             <div class="grid grid-cols-2 md:grid-cols-6 gap-2 bg-yellow-200 p-6 rounded-lg">
-                <NuxtLink v-if="routeInfo.categorySlug" :to="routeInfo.route+routeInfo.categorySlug+'/'+item.slug" v-for="(item) in modelStore.getSubjects as Array<any>" :key="item" class="text-center font-bold p-1 hover:bg-purple-200">{{ item.name }}</NuxtLink>
-                <NuxtLink v-else :to="routeInfo.route+item.slug" v-for="(item) in modelStore.getSubjects as Array<any>" :key="item+1" class="text-center font-bold p-1 hover:bg-purple-200">{{ item.name }}</NuxtLink>
-                <!-- <NuxtLink v-else :to="routeInfo.route+item.slug" v-for="(item) in modelStore.getSubjects as Array<any>" :key="item+1" class="font-bold text-sm flex items-center p-1 hover:bg-purple-200">{{ item.name }}</NuxtLink> -->
-
-                <!-- <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink>
-                <NuxtLink to="/" class="text-center font-bold">Adabiyot</NuxtLink> -->
-                <!-- Add more items as needed -->
+                <NuxtLink v-if="routeInfo.categorySlug" :to="routeInfo.route+routeInfo.categorySlug+'/'+item.slug" v-for="(item) in modelStore.getSubjects as Array<any>" :key="item" class="font-bold text-sm flex items-center p-1 hover:bg-purple-200">{{ item.name }}</NuxtLink>
+                <!-- <NuxtLink v-if="routeInfo.categorySlug" :to="routeInfo.route+routeInfo.categorySlug+'/'+item.slug" v-for="(item) in modelStore.getSubjects as Array<any>" :key="item" class="text-center font-bold p-1 hover:bg-purple-200">{{ item.name }}</NuxtLink> -->
+                <!-- <NuxtLink v-else :to="routeInfo.route+item.slug" v-for="(item) in modelStore.getSubjects as Array<any>" :key="item+1" class="text-center font-bold p-1 hover:bg-purple-200">{{ item.name }}</NuxtLink> -->
+                <NuxtLink v-else :to="routeInfo.route+item.slug" v-for="(item) in modelStore.getSubjects as Array<any>" :key="item+1" class="font-bold text-sm flex items-center p-1 hover:bg-purple-200">{{ item.name }}</NuxtLink>
             </div>
         </section>
+
+        <section class="container max-w-screen-xl mx-auto py-12 px-4 block md:hidden">
+          <!-- Mobil: scrollable grid, Desktop: oddiy grid -->
+          <div
+            class="overflow-x-auto md:overflow-visible bg-yellow-200 p-6 rounded-lg"
+          >
+            <div
+              class="grid grid-flow-col grid-rows-2 md:grid md:grid-cols-6 gap-2 w-max md:w-full"
+            >
+              <NuxtLink v-if="routeInfo.categorySlug" :to="routeInfo.route+routeInfo.categorySlug+'/'+item.slug" v-for="(item) in modelStore.getSubjects as Array<any>" :key="item" class="font-bold text-sm flex items-center p-1 hover:bg-purple-200">{{ item.name }}</NuxtLink>
+              <!-- <NuxtLink v-if="routeInfo.categorySlug" :to="routeInfo.route+routeInfo.categorySlug+'/'+item.slug" v-for="(item) in modelStore.getSubjects as Array<any>" :key="item" class="text-start font-bold p-1 hover:bg-purple-200">{{ item.name }}</NuxtLink> -->
+              <!-- <NuxtLink v-else :to="routeInfo.route+item.slug" v-for="(item) in modelStore.getSubjects as Array<any>" :key="item+1" class="text-start font-bold p-1 hover:bg-purple-200">{{ item.name }}</NuxtLink> -->
+              <NuxtLink v-else :to="routeInfo.route+item.slug" v-for="(item) in modelStore.getSubjects as Array<any>" :key="item+1" class="font-bold text-sm flex items-center p-1 hover:bg-purple-200">{{ item.name }}</NuxtLink>
+            </div>
+          </div>
+        </section>
+
     </template>
     
 </template>

@@ -3,6 +3,7 @@
 const modelStore = useHomeStore();
 const loadingStore = useLoadingStore();  
 const route = useRoute()
+const router = useRouter()
 // const subjectSlug = route.params.subject_slug;
 const categorySlug = route.params.category_slug as string;
 const subjectSlug = route.params.subject_slug as string;
@@ -17,16 +18,32 @@ const routeInfo = defineProps({
 
 
 const search = ref(null)
+const isSearch = ref(false)
 
 // Qidirish funksiyasi (watch va button uchun)
-const getRecentMaterials = () => {
-    modelStore.getAllRecentMaterials(search.value, 10, categorySlug, subjectSlug);
+const getRecentMaterials = async () => {
+    loadingStore.setSearch(true)
+    
+    try {
+      
+      // ✅ Ayni route'da qolib, query param qo‘shish
+      router.push({
+        path: route.path,
+        query: {
+          ...route.query, // eski query larni saqlab qolish
+          qirish: search.value // yangi q parametri
+        }
+      })
+      
+      await modelStore.getAllRecentMaterials(search.value, 10, categorySlug, subjectSlug)
+
+    } catch (err) {
+      console.error(err)
+    } finally {
+      loadingStore.setSearch(false)
+    }
 };
 
-// `search` o'zgarishi bilan avtomatik chaqiriladi
-// watch(search, (newValue, oldValue) => {
-//     modelStore.getAllRecentMaterials(search.value, null, categorySlug, subjectSlug);
-// });
 
 onMounted(async () => {
   await modelStore.getAllCategories()
@@ -62,27 +79,6 @@ onMounted(async () => {
                       <span v-if="item.count > 0"> {{ item.count }} </span>
                     </NuxtLink>
                     
-                    <!-- <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Diplom ishlar 450</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink>
-                    <NuxtLink to="/" class="px-4 py-2 bg-gray-200 text-purple-700 rounded-full shadow hover:bg-purple-300">Slaydlar 120</NuxtLink> -->
                 </div>
             </div>
             </div>

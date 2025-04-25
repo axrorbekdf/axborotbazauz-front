@@ -1,5 +1,13 @@
 <script setup lang="ts">
+const route = useRoute()
 
+// When accessing /posts/1, route.params.id will be 1
+const search = ref(null)
+
+watch(() => route.query.qirish, (newQ) => {
+  search.value = newQ
+  console.log('Query o‘zgardi:', newQ)
+})
 
 </script>
 
@@ -14,7 +22,9 @@
   <HomeSubjects />
 
   <!-- Recent Items Section -->
-  <HomeRecentItems />
+
+  <HomeRecentItems v-if="search == null"/>
+  <HomeSearchResultItems v-else :search="search" />
 
   <!-- Footer Wave -->
   <HomeFooter />

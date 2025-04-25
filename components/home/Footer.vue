@@ -8,19 +8,31 @@
                   <a href="#" class="text-base hover:underline block sm:inline">Biz bilan aloqa</a>
               </div>
               <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
-                  <a href="#" class="text-base hover:underline">O'zbek</a>
-                  <div class="flex items-center border border-black">
-                      <div class="bg-blue-500 h-8 w-2"></div>
-                      <div class="bg-orange-400 text-white text-base px-2 flex items-center justify-center w-16">
-                          <span class="font-bold text-base">0</span>
-                      </div>
-                  </div>
+                    <a href="#" class="text-base hover:underline">O'zbek</a>
+                    <div class="flex items-center border border-black">
+                        <div v-html="counterHtml" />
+                    </div>
               </div>
           </div>
           <div class="text-gray-300 text-base p-4 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
-              <p>© 2025-2025 AxborotBaza.uz</p>
-              <p>Yaratuvchi DriveSoft (drivesoft.uz)</p>
+              <p>©2025 AxborotBaza.uz</p>
+              <p>Sayt yaratuvchi DriveSoft (drivesoft.uz)</p>
           </div>
       </section>
   </div>
 </template>
+
+<script setup>
+const counterHtml = ref('')
+
+onMounted(() => {
+  const pg = encodeURIComponent(window.location.href)
+  counterHtml.value = `
+    <!-- START WWW.UZ TOP-RATING -->
+    <a href="http://www.uz/ru/res/visitor/index?id=47835" target=_top>
+      <img src="https://cnt0.www.uz/counter/collect?id=47835&pg=${pg}&col=340F6E&t=ffffff&p=BD6F6F" width=88 height=31 border=0 alt="Топ рейтинг www.uz">
+    </a>
+    <!-- FINISH WWW.UZ TOP-RATING -->
+  `
+})
+</script>
