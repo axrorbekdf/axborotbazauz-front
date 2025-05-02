@@ -31,7 +31,7 @@ const getRecentMaterials = async () => {
         path: route.path,
         query: {
           ...route.query, // eski query larni saqlab qolish
-          qirish: search.value // yangi q parametri
+          qidirish: search.value // yangi q parametri
         }
       })
       

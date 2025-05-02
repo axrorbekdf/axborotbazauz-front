@@ -4,7 +4,7 @@ const route = useRoute()
 // When accessing /posts/1, route.params.id will be 1
 const search = ref(null)
 
-watch(() => route.query.qirish, (newQ) => {
+watch(() => route.query.qidirish, (newQ) => {
   search.value = newQ
   console.log('Query o‘zgardi:', newQ)
 })
