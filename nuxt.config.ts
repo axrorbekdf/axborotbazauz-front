@@ -14,14 +14,14 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['./store/**'],
   },
-  app:{
-    head: {
-      title: 'Qidirganizni topasiz!',
-      meta: [
-        { name: 'description', content: 'My Nuxt 3 project' },
-        { name: 'keywords', content: 'nuxt, seo, web' },
-      ],
-    }
-  }
+  // app:{
+  //   head: {
+  //     title: 'Qidirganizni topasiz!',
+  //     meta: [
+  //       { name: 'description', content: 'My Nuxt 3 project' },
+  //       { name: 'keywords', content: 'nuxt, seo, web' },
+  //     ],
+  //   }
+  // }
 
 })
