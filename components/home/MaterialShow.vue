@@ -7,6 +7,7 @@ const loadingStore = useLoadingStore();
 const {currentUser} = useAuthStore();
 
 const isLoading = ref(false);
+let meta;
 const obuna = computed(() => currentUser.obuna.some(item => item.status));
 
 const filter = defineProps({
@@ -23,7 +24,10 @@ onMounted(async () => {
     .finally(() => {
         isLoading.value = false;
         loadingStore.set(false);
-    }); 
+    });
+
+    meta = filter.materialSlug.split("-");
+    meta = meta.join();
 });
 
 const download = async () => {
@@ -34,6 +38,28 @@ const download = async () => {
     console.error('Xatolik yuz berdi:', error);
   }
 };
+
+useHead({
+  title: 'Xush kelibsiz! - Qidirganizni topasiz!',
+  meta: [
+    // Umumiy meta
+    { name: 'description', content: 'Dars ishlanmalari, diplom ishlari, slaydlar, referatlar, kurs ishlari va fanlar bo‘yicha turli materiallarni yuklab olish yoki yuklash mumkin bo‘lgan bepul ta’lim platformasi — Axborot Baza.' },
+    { name: 'keywords', content: meta },
+    { name: 'author', content: 'https://drivesoft.uz' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+
+    // Open Graph (Facebook, Telegram va boshqalar uchun)
+    { property: 'og:title', content: 'axborotbaza.uz - qidirganizni topasiz!' },
+    { property: 'og:description', content: 'Dars ishlanmalari, diplom ishlari, slaydlar, referatlar, kurs ishlari va fanlar bo‘yicha turli materiallarni yuklab olish yoki yuklash mumkin bo‘lgan bepul ta’lim platformasi — Axborot Baza.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://axborotbaza.uz/' },
+    { property: 'og:image', content: 'https://axborotbaza.uz/favicon.ico' },  // 1200x630 tavsiya etiladi
+
+  ],
+  link: [
+    { rel: 'icon', type: 'image/png', href: '/favicon.ico' }
+  ]
+})
 
 </script>
 

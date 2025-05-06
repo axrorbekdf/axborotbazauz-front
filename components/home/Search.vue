@@ -24,6 +24,11 @@ const isSearch = ref(false)
 const getRecentMaterials = async () => {
     loadingStore.setSearch(true)
     
+    window.scrollTo({
+      top: 300,
+      behavior: 'smooth'
+    })
+
     try {
       
       // ✅ Ayni route'da qolib, query param qo‘shish
