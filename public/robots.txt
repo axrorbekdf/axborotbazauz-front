@@ -1,0 +1,18 @@
+# Umumiy sozlamalar: barcha botlarga ruxsat
+User-agent: *
+Allow: /
+
+# ⚠️ Googlebot va boshqa botlarga quyidagi sahifalarni ko‘rsatma:
+Disallow: /admin
+Disallow: /admin/
+Disallow: /admin/*
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /user
+Disallow: /user/*
+Disallow: /api/
+Disallow: /api/*
+Disallow: /private
+
+# Kerakli sitemap manzili (shu yerda sizning sitemap.xml joylashgan bo‘lishi kerak)
+Sitemap: https://axborotbaza.uz/sitemap.xml

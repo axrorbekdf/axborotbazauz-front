@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@pinia/nuxt",
     "@nuxtjs/tailwindcss",
+    'nuxt-simple-sitemap'
   ],
   colorMode: {
     preference: 'light'
@@ -34,6 +35,108 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', href: '/favicon.ico' }
       ]
     }
+  },
+
+  sitemap: {
+    siteUrl: 'https://axborotbaza.uz',
+    autoLastmod: false,
+    trailingSlash: false,
+    gzip: true,
+
+    // Static sahifalar
+    routes: [
+      '/',
+      '/tarifs',
+      '/principle',
+      '/principle',
+      '/contact',
+      '/account',
+
+      "document/category/dars-ishlanmalar",
+      "document/category/diplom-ishlar",
+      "document/category/darsliklar",
+      "document/category/slaydlar",
+      "document/category/referatlar",
+      "document/category/kurs-ishlari",
+
+      "document/subject/adabiyot",
+      "document/subject/algebra",
+      "document/subject/anatomiya",
+      "document/subject/arxitektura",
+      "document/subject/astronomiya",
+      "document/subject/biologiya",
+      "document/subject/biotexnologiya",
+      "document/subject/botanika",
+      "document/subject/chizmachilik",
+      "document/subject/chqbt",
+      "document/subject/davlat-tilida-ish-yuritish",
+      "document/subject/dinshunoslik-asoslari",
+      "document/subject/ekologiya",
+      "document/subject/energetika",
+      "document/subject/falsafa",
+      "document/subject/fizika",
+      "document/subject/fransuz-tili",
+      "document/subject/geodeziya",
+      "document/subject/geografiya",
+      "document/subject/geologiya",
+      "document/subject/geometriya",
+      "document/subject/huquqshunoslik",
+      "document/subject/informatika-va-at",
+      "document/subject/ingliz-tili",
+      "document/subject/iqtisodiyot",
+      "document/subject/issiqlik-texnikasi",
+      "document/subject/jismoniy-tarbiya",
+      "document/subject/kimyo",
+      "document/subject/konchilik-ishi",
+      "document/subject/madaniyatshunoslik",
+      "document/subject/maktabgacha-va-boshlang-ich-ta-lim",
+      "document/subject/manaviyat-asoslari",
+      "document/subject/mashinasozlik",
+      "document/subject/materialshunoslik",
+      "document/subject/mehnat",
+      "document/subject/melioratsiya",
+      "document/subject/metrologiya",
+      "document/subject/mexanika",
+      "document/subject/milliy-istiqlol-g-oyasi",
+      "document/subject/musiqa",
+      "document/subject/nemis-tili",
+      "document/subject/o-qish",
+      "document/subject/odam-va-uning-salomatligi",
+      "document/subject/odobnoma",
+      "document/subject/oziq-ovqat-texnologiyasi",
+      "document/subject/pedagogik-psixologiya",
+      "document/subject/prezident-asarlari",
+      "document/subject/psixologiya",
+      "document/subject/psixologiya-1",
+      "document/subject/qishloq-va-o-rmon-xo-jaligi",
+      "document/subject/radiotexnika",
+      "document/subject/rus-tili-va-adabiyoti",
+      "document/subject/san-at",
+      "document/subject/siyosatshunoslik",
+      "document/subject/sotsiologiya",
+      "document/subject/suv-xo-jaligi",
+      "document/subject/tabiatshunoslik",
+      "document/subject/tarix",
+      "document/subject/tasviriy-san-at",
+      "document/subject/texnika-va-texnologiya",
+      "document/subject/tibbiyot",
+      "document/subject/tilshunoslik",
+      "document/subject/to-qimachilik",
+      "document/subject/transport",
+      "document/subject/valeologiya",
+      "document/subject/xayot-faoliyati-xavfsizligi",
+      "document/subject/zoologiya",
+      
+    ],
+
+    // ❌ admin sahifalarni yashirish
+    exclude: [
+      '/admin',
+      '/admin/**',
+      '/login',
+      '/dashboard',
+      '/user/**'
+    ]
   }
 
 })
