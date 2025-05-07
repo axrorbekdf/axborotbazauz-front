@@ -36,8 +36,15 @@ onMounted(async () => {
             </div>
         </section>
 
-        <section class="container max-w-screen-xl mx-auto py-12 px-4 block md:hidden">
+        <section class="container max-w-screen-xl mx-auto py-12 px-4 block md:hidden relative">
           <!-- Mobil: scrollable grid, Desktop: oddiy grid -->
+
+            <!-- LEFT -->
+            <div class="absolute left-5 top-1/2 -translate-y-1/2 z-20 text-gray-400 text-xl"><</div>
+
+            <!-- RIGHT -->
+            <div class="absolute right-5 top-1/2 -translate-y-1/2 z-20 text-gray-400 text-xl">></div>
+
           <div
             class="overflow-x-auto md:overflow-visible bg-yellow-200 p-6 rounded-lg"
           >
