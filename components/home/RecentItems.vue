@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { variants } from '#tailwind-config';
+
 const modelStore = useHomeStore();
 const loadingStore = useLoadingStore();
 
@@ -15,18 +17,34 @@ const filter = defineProps({
   }
 });
 
+const page = ref(1)
+const pageCount = ref(10)
+
 onMounted(async () => {
-  await modelStore.getAllRecentMaterials(null, 10, filter.categorySlug, filter.subjectSlug)
+  await modelStore.getAllRecentMaterials(null, page.value, pageCount.value, filter.categorySlug, filter.subjectSlug)
   .finally(() => {
     loadingStore.set(false);
   }); 
+});
+
+watchEffect( async () => {
+  await modelStore.getAllRecentMaterials(null, page.value, pageCount.value, filter.categorySlug, filter.subjectSlug);
 });
 
 </script>
 
 <template>
     <section class="container max-w-screen-xl mx-auto py-12 px-4">
-        <h2 class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">So‘nggi qo‘shilganlar</h2>
+        
+        <div class="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-2 mb-6">
+          <div>
+            <h2 class="text-2xl font-bold text-purple-700" style="color: #0A133C;">So‘nggi qo‘shilganlar</h2>
+          </div>
+          <div>
+            <UPagination size="xl" v-model="page" :page-count="pageCount" :total="modelStore.getMeta?.total" color="neutral" :inactiveButton="{ variant: 'link' }" :prevButton="{ variant: 'link' }" :nextButton="{variant:'link'}"/>
+          </div>
+        </div>
+
         <div class="space-y-4">
             <!-- Single Item -->
             <NuxtLink :to="'/document/material/'+item.slug" v-for="item in modelStore.getMaterials as Array<any>" :key="item" class="flex flex-wrap items-center gap-4 p-4 border border-purple-400 rounded-lg">

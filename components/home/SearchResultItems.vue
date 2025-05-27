@@ -20,10 +20,12 @@ const filter = defineProps({
   }
 });
 
+const page = ref(1)
+const pageCount = ref(10)
 
 onMounted(async () => {
   loadingStore.setSearch(true);
-  await modelStore.getAllRecentMaterials(filter.search, 10, filter.categorySlug, filter.subjectSlug)
+  await modelStore.getAllRecentMaterials(filter.search, page.value, pageCount.value, filter.categorySlug, filter.subjectSlug)
   .then(() => {
     loadingStore.setSearch(false);
   })
@@ -61,7 +63,16 @@ useHead({
     <section class="container max-w-screen-xl mx-auto py-12 px-4">
         <h2 v-if="loadingStore.isSearch" class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">Qidirilmoqda...!</h2>
         <section v-else>
-          <h2 class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">Qidirish natijalari</h2>
+          
+          <div class="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-2 mb-6">
+            <div>
+              <h2 class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">Qidirish natijalari</h2>
+            </div>
+            <div>
+              <UPagination size="xl" v-model="page" :page-count="pageCount" :total="modelStore.getMeta?.total" color="neutral" :inactiveButton="{ variant: 'link' }" :prevButton="{ variant: 'link' }" :nextButton="{variant:'link'}"/>
+            </div>
+          </div>
+
           <div class="space-y-4">
               <!-- Single Item -->
               <NuxtLink :to="'/document/material/'+item.slug" v-for="item in modelStore.getMaterials as Array<any>" :key="item" class="flex flex-wrap items-center gap-4 p-4 border border-purple-400 rounded-lg">

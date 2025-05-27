@@ -7,13 +7,17 @@ export const useHomeStore = defineStore("home", {
         categories: [],
         subjects: [],
         materials: [],
+        links: {},
+        meta: {} as any,
         material: {} as any,
     }),
     getters: {
         getCategories: state => state.categories,
         getSubjects: state => state.subjects,
         getMaterials: state => state.materials,
-        getMaterial: state => state.material
+        getMaterial: state => state.material,
+        getLinks: state => state.links,
+        getMeta: state => state.meta,
     },
     actions: {
         async getAllCategories(search: String|null = null, perPage: Number|null = null){
@@ -58,6 +62,7 @@ export const useHomeStore = defineStore("home", {
         },
         async getAllRecentMaterials(
             search: String|null = null, 
+            page: Number|null = 1, 
             perPage: Number|null = null, 
             category: String|null = null,
             subject: String|null = null
@@ -65,6 +70,7 @@ export const useHomeStore = defineStore("home", {
           try {
               await HomeService.material({
                 search: search,
+                page: page,
                 perPage: perPage,
                 categorySlug: category,
                 subjectSlug: subject,
@@ -72,6 +78,8 @@ export const useHomeStore = defineStore("home", {
               .then((res: any) => {
 
                   this.materials = res.result.data;
+                  this.links = res.result.links;
+                  this.meta = res.result.meta;
           
               }).catch((error) => {
                   
