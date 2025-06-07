@@ -141,7 +141,7 @@ export default defineNuxtConfig({
   },
 
   gtag: {
-    id: 'AW-17095139576', // Sizning Google Ads yoki Analytics ID'ingiz
+    id: 'AW-17078865033', // Sizning Google Ads yoki Analytics ID'ingiz
     config: {
       anonymize_ip: true,
     },
