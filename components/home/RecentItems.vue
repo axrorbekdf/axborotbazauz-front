@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { variants } from '#tailwind-config';
 
 const modelStore = useHomeStore();
 const loadingStore = useLoadingStore();
@@ -20,32 +19,44 @@ const filter = defineProps({
 const page = ref(1)
 const pageCount = ref(10)
 
-onMounted(async () => {
+onMounted(async ()=> {
+  loadingStore.setPagination(true);
   await modelStore.getAllRecentMaterials(null, page.value, pageCount.value, filter.categorySlug, filter.subjectSlug)
+  .then(() => {
+    loadingStore.setPagination(false);
+  })
   .finally(() => {
-    loadingStore.set(false);
+    loadingStore.setPagination(false);
   }); 
 });
 
-watchEffect( async () => {
-  await modelStore.getAllRecentMaterials(null, page.value, pageCount.value, filter.categorySlug, filter.subjectSlug);
+watch(page, async (newPage) => {
+  loadingStore.setPagination(true);
+  await modelStore.getAllRecentMaterials(null, newPage, pageCount.value, filter.categorySlug, filter.subjectSlug)
+  .then(() => {
+    loadingStore.setPagination(false);
+  })
+  .finally(() => {
+    loadingStore.setPagination(false);
+  });
 });
 
 </script>
 
 <template>
     <section class="container max-w-screen-xl mx-auto py-12 px-4">
-        
         <div class="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-2 mb-6">
           <div>
-            <h2 class="text-2xl font-bold text-purple-700" style="color: #0A133C;">So‘nggi qo‘shilganlar</h2>
+            <h2 v-if="loadingStore.isPagination" class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">Keyingi sahifa yuklanmoqda...</h2>
+            <h2 v-else-if="page > 1" class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">{{page}} - sahifa yuklandi.</h2>
+            <h2 v-else class="text-2xl font-bold text-purple-700" style="color: #0A133C;">So‘nggi qo‘shilganlar</h2>
           </div>
           <div>
             <UPagination size="xl" v-model="page" :page-count="pageCount" :total="modelStore.getMeta?.total" color="neutral" :inactiveButton="{ variant: 'link' }" :prevButton="{ variant: 'link' }" :nextButton="{variant:'link'}"/>
           </div>
         </div>
 
-        <div class="space-y-4">
+        <div class="space-y-4"> 
             <!-- Single Item -->
             <NuxtLink :to="'/document/material/'+item.slug" v-for="item in modelStore.getMaterials as Array<any>" :key="item" class="flex flex-wrap items-center gap-4 p-4 border border-purple-400 rounded-lg">
                 <div class="w-6 h-6 bg-purple-500 rounded-full" style="background-color: #0DDDEA"></div>

@@ -24,11 +24,12 @@ useHead({
 })
 
 // When accessing /posts/1, route.params.id will be 1
-const search = ref(null)
+const search = ref('')
 
-watch(() => route.query.qidirish, (newQ) => {
-  search.value = newQ
-  console.log('Query o‘zgardi:', newQ)
+watch(() => route.query.qidirish, (newQidirish) => {
+  search.value = Array.isArray(newQidirish)
+      ? newQidirish[0] || ''
+      : newQidirish || '';
 })
 
 </script>
@@ -45,7 +46,7 @@ watch(() => route.query.qidirish, (newQ) => {
 
   <!-- Recent Items Section -->
 
-  <HomeRecentItems v-if="search == null"/>
+  <HomeRecentItems v-if="search == ''"/>
   <HomeSearchResultItems v-else :search="search" />
 
   <!-- Footer Wave -->
