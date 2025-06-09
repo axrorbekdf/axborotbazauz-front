@@ -1,0 +1,27 @@
+{
+  "kirish": "Login",
+  "royhatdanOtish": "Register",
+  "authQuestion1": "Not registered yet?",
+  "authQuestion12": "Already have an account?",
+
+  "loginFormTetx1": "Phone",
+  "loginFormTetx2": "Password",
+
+  "registerFormTetx1": "Full Name",
+  "registerFormTetx2": "Phone number",
+  "registerFormTetx3": "Password",
+
+  "barchasi": "All",
+  "qidirish": "Search",
+  "menuHome": "Home",
+  "menuTarifs": "Tariffs",
+  "menuPrinciple": "Rules",
+  "menuContact": "Contact Us",
+
+  "songiQoshilganlar": "Recently Added",
+  "qidirilmoqda": "Searching...!",
+  "keyingiSahifaYuklanmoqda": "Loading next page...",
+  "sahifaYuklandi": "Page loaded",
+  "qidirishNatijalari": "Search Results",
+  "kunOldin": "days ago"
+}

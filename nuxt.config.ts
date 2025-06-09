@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/tailwindcss",
     'nuxt-simple-sitemap',
-    'nuxt-gtag'
+    'nuxt-gtag',
+    '@nuxtjs/i18n'
   ],
   colorMode: {
     preference: 'light'
@@ -147,4 +148,32 @@ export default defineNuxtConfig({
     },
   },
 
+  i18n: {
+    locales: [
+      {
+        code: 'uz',
+        name: 'Oʻzbek',
+        file: 'uz.json'
+      },
+      {
+        code: 'en',
+        name: 'English',
+        file: 'en.json'
+      },
+      {
+        code: 'ru',
+        name: 'Русский',
+        file: 'ru.json'
+      },
+    ],
+    lazy: true,
+    // langDir: 'locales/',
+    defaultLocale: 'uz',
+    strategy: 'prefix', // yoki 'prefix', 'prefix_except_default',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      fallbackLocale: 'uz'
+    },
+  }
 })

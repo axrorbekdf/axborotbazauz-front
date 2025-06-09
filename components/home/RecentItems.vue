@@ -2,6 +2,7 @@
 
 const modelStore = useHomeStore();
 const loadingStore = useLoadingStore();
+const { t } = useI18n()
 
 const filter = defineProps({
   categorySlug: {
@@ -47,9 +48,9 @@ watch(page, async (newPage) => {
     <section class="container max-w-screen-xl mx-auto py-12 px-4">
         <div class="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-2 mb-6">
           <div>
-            <h2 v-if="loadingStore.isPagination" class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">Keyingi sahifa yuklanmoqda...</h2>
-            <h2 v-else-if="page > 1" class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">{{page}} - sahifa yuklandi.</h2>
-            <h2 v-else class="text-2xl font-bold text-purple-700" style="color: #0A133C;">So‘nggi qo‘shilganlar</h2>
+            <h2 v-if="loadingStore.isPagination" class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">{{ t('keyingiSahifaYuklanmoqda') }}</h2>
+            <h2 v-else-if="page > 1" class="text-2xl font-bold text-purple-700 mb-6" style="color: #0A133C;">{{page}} - {{ t('sahifaYuklandi') }}</h2>
+            <h2 v-else class="text-2xl font-bold text-purple-700" style="color: #0A133C;">{{ t('songiQoshilganlar') }}</h2>
           </div>
           <div>
             <UPagination size="xl" v-model="page" :page-count="pageCount" :total="modelStore.getMeta?.total" color="neutral" :inactiveButton="{ variant: 'link' }" :prevButton="{ variant: 'link' }" :nextButton="{variant:'link'}"/>
@@ -64,7 +65,7 @@ watch(page, async (newPage) => {
                   <h3 class="font-bold text-sm md:text-base">{{ item?.title }}</h3>
                   <p class="text-xs md:text-sm text-purple-600" style="color: #0DDDEA">{{ item?.category_name }} / {{ item?.subject_name }}</p>
                 </div>
-                <button class="bg-red-500 text-white px-4 py-1 rounded-full text-xs md:text-sm" style="background-color: #0DDDEA">{{ item?.days_difference+1 }} kun oldin</button>
+                <button class="bg-red-500 text-white px-4 py-1 rounded-full text-xs md:text-sm" style="background-color: #0DDDEA">{{ item?.days_difference+1 }} {{ t('kunOldin') }}</button>
             </NuxtLink>
             <!-- Duplicate or dynamically add items -->
         </div>

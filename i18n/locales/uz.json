@@ -1,0 +1,27 @@
+{
+    "kirish": "Kirish",
+    "royhatdanOtish": "Ro'yxatdan o'tish",
+    "authQuestion1": "Hali roʻyxatdan oʻtmaganmisiz?",
+    "authQuestion12": "Allaqachon hisobingiz bormi?",
+
+    "loginFormTetx1": "Telefon",
+    "loginFormTetx2": "Parol",
+
+    "registerFormTetx1": "Familiya Ismingiz",
+    "registerFormTetx2": "Telefon nomeringiz",
+    "registerFormTetx3": "Parol",
+
+    "barchasi": "Barchasi",
+    "qidirish": "Qidirish",
+    "menuHome": "Bosh sahifa",
+    "menuTarifs": "Tariflar",
+    "menuPrinciple": "Qoidalar",
+    "menuContact": "Biz bilan aloqa",
+
+    "songiQoshilganlar": "So‘nggi qo‘shilganlar",
+    "qidirilmoqda": "Qidirilmoqda...!",
+    "keyingiSahifaYuklanmoqda": "Keyingi sahifa yuklanmoqda...",
+    "sahifaYuklandi": "sahifa yuklandi",
+    "qidirishNatijalari": "Qidirish natijalari",
+    "kunOldin": "kun oldin"
+}

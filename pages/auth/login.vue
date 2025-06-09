@@ -1,30 +1,33 @@
 <script lang="ts" setup>
 import AuthService from '~/services/Auth';
+const { t } = useI18n();
 
-    definePageMeta({
-        layout: "auth"
-    })
+definePageMeta({
+    layout: "auth"
+})
 
-    useHead({
-        title: "Kirish | Axborot-Baza.UZ"
-    })
+const pageTitle = computed(() => `${t('kirish')} | Axborot-Baza.UZ`);
+useHead({
+    // title: "Kirish | Axborot-Baza.UZ"
+    title: pageTitle
+})
 
-    const router = useRouter();
+const router = useRouter();
 
-    const isLogin = ref(true);
+const isLogin = ref(true);
 
-    const toggleLogin = () => (isLogin.value = !isLogin.value)
+const toggleLogin = () => (isLogin.value = !isLogin.value)
 
-    onMounted(() => {
-        AuthService.getUser()
-        .then((res: any) => {
-            
-            if(res.status){
-                router.push('/');
-            }
-            
-        });
+onMounted(() => {
+    AuthService.getUser()
+    .then((res: any) => {
+        
+        if(res.status){
+            router.push('/');
+        }
+        
     });
+});
 
 </script>
 <template>
@@ -36,8 +39,8 @@ import AuthService from '~/services/Auth';
             <div class="space-y-6 flex-1">
                 
                 <h1 class="text-5xl font-bold flex justify-between mt-6 mb-0">
-                    <template v-if="isLogin">Kirish</template>
-                    <template v-else>Ro'yxatdan o'tish</template>
+                    <template v-if="isLogin">{{ t('kirish') }}</template>
+                    <template v-else>{{ t('royhatdanOtish') }}</template>
                     <SharedColorMode />
                 </h1>
 

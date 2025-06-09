@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from '#ui/types'
 import AuthService from '~/services/Auth';
+const { t } = useI18n();
 
 const toast = useToast();
 
@@ -95,17 +96,17 @@ async function onSubmit (event: FormSubmitEvent<any>) {
   />
 
   <UForm :validate="validate" :state="state" class="space-y-6" @submit="onSubmit">
-    <UFormGroup label="Telefon" name="phone">
+    <UFormGroup :label="t('loginFormTetx1')" name="phone">
       <UInput v-model="state.phone" color="blue" size="lg"/>
     </UFormGroup>
 
-    <UFormGroup label="Parol" name="password">
+    <UFormGroup :label="t('loginFormTetx2')" name="password">
       <UInput v-model="state.password" type="password" color="blue" size="lg"/>
     </UFormGroup>
 
     <div class="text-sm text-neutral-500">
-        Hali roʻyxatdan oʻtmaganmisiz?
-        <span class="text-blue-500 hover:underline" role="button" @click="$props.toggleLogin">Ro'yxatdan o'tish</span>
+        {{ t('authQuestion1') }}
+        <span class="text-blue-500 hover:underline" role="button" @click="$props.toggleLogin">{{ t('royhatdanOtish') }}</span>
     </div>
 
     <UButton type="submit" color="blue" class="w-full" block size="lg" :disabled="isLoading">
@@ -113,7 +114,7 @@ async function onSubmit (event: FormSubmitEvent<any>) {
       <template v-if="isLoading">
         <Icon name="svg-spinners:8-dots-rotate" class="w-5 h-5"/>
       </template>
-      <template v-else>Kirish</template>
+      <template v-else>{{ t('kirish') }}</template>
 
     </UButton>
   </UForm>

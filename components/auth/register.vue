@@ -2,6 +2,7 @@
 import type { Icon } from '#components';
 import type { FormError, FormSubmitEvent } from '#ui/types'
 import AuthService from '~/services/Auth';
+const { t } = useI18n();
 
 
 const router = useRouter();
@@ -103,18 +104,18 @@ const isPhoneValid = computed(() => {
   />
   <UForm :validate="validate" :state="state" class="space-y-4" @submit="onSubmit">
 
-    <UFormGroup label="Familiya Ismingiz *" name="name">
+    <UFormGroup :label="t('registerFormTetx1')+' *'" name="name">
       <UInput v-model="state.name" color="blue" size="lg" placeholder="To'liq ma'lumot kiriting..."/>
     </UFormGroup>
 
-    <UFormGroup label="Telefon nomeringiz *" name="phone">
+    <UFormGroup :label="t('registerFormTetx2')+ '*'" name="phone">
         <UInput v-model="state.phone" color="blue" size="lg" placeholder="+998XXXXXXXXX" maxlength="13"/>
         <span class="text-xs text-red-600" v-if="!isPhoneValid && state.phone.length > 0">
           Telefon raqami +998XXXXXXXXX formatida bo‘lishi kerak.
         </span>
     </UFormGroup>
 
-    <UFormGroup label="Parol *" name="password">
+    <UFormGroup :label="t('registerFormTetx3')+' *'" name="password">
       <UInput v-model="state.password" type="password" color="blue" size="lg" placeholder="6ta belgi kiriting..."/>
       <span class="text-xs text-red-600">Parol 6 ta belgidan kam bo'lmasligi kerak</span>
       <UInput v-model="confirmPassword" type="password" color="blue" size="lg" placeholder="Parolni qaytadan kiriting..."/>
@@ -123,15 +124,15 @@ const isPhoneValid = computed(() => {
 
     
     <div class="text-sm text-neutral-500">
-        Allaqachon hisobingiz bormi?
-        <span class="text-blue-500 hover:underline" role="button" @click="$props.toggleLogin">Kirish</span>
+        {{ t('authQuestion1') }}
+        <span class="text-blue-500 hover:underline" role="button" @click="$props.toggleLogin">{{ t('kirish') }}</span>
     </div>
 
     <UButton type="submit" color="blue" class="w-full" block size="lg" :disabled="isLoading">
       <template v-if="isLoading">
         <Icon name="svg-spinners:3-dots-fade" class="w-5 h-5"/>
       </template>
-      <template v-else>Ro'yhatdan o'tish</template>
+      <template v-else>{{ t('royhatdanOtish') }}</template>
     </UButton>
   </UForm>
 </template>

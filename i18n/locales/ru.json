@@ -1,0 +1,27 @@
+{
+  "kirish": "Вход",
+  "royhatdanOtish": "Регистрация",
+  "authQuestion1": "Еще не зарегистрированы?",
+  "authQuestion12": "Уже есть аккаунт?",
+
+  "loginFormTetx1": "Телефон",
+  "loginFormTetx2": "Пароль",
+
+  "registerFormTetx1": "Фамилия Имя",
+  "registerFormTetx2": "Номер телефона",
+  "registerFormTetx3": "Пароль",
+
+  "barchasi": "Все",
+  "qidirish": "Поиск",
+  "menuHome": "Главная",
+  "menuTarifs": "Тарифы",
+  "menuPrinciple": "Правила",
+  "menuContact": "Связаться с нами",
+
+  "songiQoshilganlar": "Последние добавленные",
+  "qidirilmoqda": "Идет поиск...!",
+  "keyingiSahifaYuklanmoqda": "Загружается следующая страница...",
+  "sahifaYuklandi": "Страница загружена",
+  "qidirishNatijalari": "Результаты поиска",
+  "kunOldin": "дней назад"
+}
